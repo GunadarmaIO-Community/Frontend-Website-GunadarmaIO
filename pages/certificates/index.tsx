@@ -33,7 +33,8 @@ const CertificatesPage = () => {
           <Button
             variant='contained'
             fullWidth
-            onClick={() => input && router.push(`/certificates/${input}`)}>
+            onClick={() => input && router.push(`/certificates/${input}`)}
+          >
             SEARCH
           </Button>
         </Box>

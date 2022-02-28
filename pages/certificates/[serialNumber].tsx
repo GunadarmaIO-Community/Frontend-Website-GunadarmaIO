@@ -51,16 +51,18 @@ const CertificatePage = () => {
               sx={{
                 backgroundColor: certificate ? 'yellowgreen' : 'orange',
                 p: { xs: 3, sm: 4 },
-                borderRadius: 2
-              }}>
+                borderRadius: 2,
+              }}
+            >
               <Typography
                 variant='h4'
                 component='h1'
                 sx={{
                   textAlign: 'center',
                   color: 'white',
-                  fontSize: { xs: '1rem', sm: '2rem' }
-                }}>
+                  fontSize: { xs: '1rem', sm: '2rem' },
+                }}
+              >
                 {certificate
                   ? 'This certificate is valid'
                   : 'The certificate you are looking for is not found'}
@@ -72,8 +74,9 @@ const CertificatePage = () => {
                   display: 'flex',
                   flexDirection: { xs: 'column', sm: 'row' },
                   textAlign: { xs: 'center', sm: 'left' },
-                  mt: 4
-                }}>
+                  mt: 4,
+                }}
+              >
                 <Box sx={{ width: { sm: '50%' } }}>
                   <LabelAndText
                     sx={{ p: 1 }}
@@ -108,7 +111,8 @@ const CertificatePage = () => {
                     style={{ textDecoration: 'none' }}
                     href={certificate.file}
                     target='_blank'
-                    rel='noreferrer'>
+                    rel='noreferrer'
+                  >
                     <Button sx={{ m: 1, mt: 2 }} variant='contained'>
                       See certificate
                     </Button>

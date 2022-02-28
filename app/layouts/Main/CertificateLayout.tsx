@@ -1,6 +1,6 @@
 import { Box, Container, Paper } from '@mui/material'
-import { ReactNode } from 'react'
 import Image from 'next/image'
+import { ReactNode } from 'react'
 
 type Props = {
   children: ReactNode
@@ -10,8 +10,9 @@ export const CertificatesLayout = ({ children }: Props) => {
   return (
     <Box
       sx={{
-        width: '100%'
-      }}>
+        width: '100%',
+      }}
+    >
       <Container maxWidth='md'>
         <Paper elevation={2} sx={{ p: 3, mt: { xs: 4, md: 8 } }}>
           <Box
@@ -21,8 +22,9 @@ export const CertificatesLayout = ({ children }: Props) => {
               width: '100%',
               maxWidth: 400,
               height: { xs: 150 },
-              marginX: 'auto'
-            }}>
+              marginX: 'auto',
+            }}
+          >
             <Image
               loading='eager'
               src='/assets/images/logo-text.png'
