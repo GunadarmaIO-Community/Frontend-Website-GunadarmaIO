@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   eslint: {
-    dirs: ['pages', 'app'],
+    dirs: ['src'],
   },
 
   reactStrictMode: true,
