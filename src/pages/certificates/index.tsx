@@ -1,9 +1,10 @@
 import { Button, Input, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { useState } from 'react'
-import { CertificatesLayout } from '../../app/layouts/Main/CertificateLayout'
-import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+
+import { CertificatesLayout } from '../../layouts/Main/CertificateLayout'
 
 const CertificatesPage = () => {
   const [input, setInput] = useState<string>('')

@@ -1,6 +1,7 @@
-import '../app/styles/global.css'
-import '../app/configs/axiosConfig'
 import type { AppProps } from 'next/app'
+import '../configs/axiosConfig'
+
+import '../styles/global.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
