@@ -1,18 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
-function withOpacityValue(variable) {
-  return ({ opacityValue }) => {
-    if (opacityValue === undefined) {
-      return `rgb(var(${variable}))`
-    }
-    return `rgb(var(${variable}) / ${opacityValue})`
-  }
-}
-
 /** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
 module.exports = {
-  content: ['./app/**/*.{js,jsx,ts,tsx}', , './pages/**/*.{tsx,ts,jsx,js}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -20,19 +11,31 @@ module.exports = {
       },
       colors: {
         primary: {
-          // Customize it on globals.css :root
-          50: withOpacityValue('--tw-color-primary-50'),
-          100: withOpacityValue('--tw-color-primary-100'),
-          200: withOpacityValue('--tw-color-primary-200'),
-          300: withOpacityValue('--tw-color-primary-300'),
-          400: withOpacityValue('--tw-color-primary-400'),
-          500: withOpacityValue('--tw-color-primary-500'),
-          600: withOpacityValue('--tw-color-primary-600'),
-          700: withOpacityValue('--tw-color-primary-700'),
-          800: withOpacityValue('--tw-color-primary-800'),
-          900: withOpacityValue('--tw-color-primary-900'),
+          100: '#cce2fa',
+          200: '#99c5f5',
+          300: '#66a8f0',
+          400: '#338beb',
+          500: '#006ee6',
+          600: '#0058b8',
+          700: '#00428a',
+          800: '#002c5c',
+          900: '#00162e',
         },
-        dark: '#222222',
+        secondary: {
+          100: '#f9fcff',
+          200: '#f4f9ff',
+          300: '#eef7ff',
+          400: '#e9f4ff',
+          500: '#e3f1ff',
+          600: '#b6c1cc',
+          700: '#889199',
+          800: '#5b6066',
+          900: '#2d3033',
+        },
+        fontFamily: {
+          sans: ['Montserrat', 'sans-serif'],
+          serif: ['Montserrat', 'serif'],
+        },
       },
       keyframes: {
         flicker: {
