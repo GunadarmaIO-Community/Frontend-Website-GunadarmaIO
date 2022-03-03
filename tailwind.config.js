@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...fontFamily.sans],
+        primary: ['Poppins', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -31,10 +31,6 @@ module.exports = {
           700: '#889199',
           800: '#5b6066',
           900: '#2d3033',
-        },
-        fontFamily: {
-          sans: ['Montserrat', 'sans-serif'],
-          serif: ['Montserrat', 'serif'],
         },
       },
       keyframes: {
