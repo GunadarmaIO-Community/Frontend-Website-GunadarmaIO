@@ -1,47 +1,74 @@
-import { Button, Input, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { Document, Page, pdfjs } from 'react-pdf'
+import { Layout } from 'src/layouts/Main/Layout'
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
+import { NextImage } from '@/elements/NextImage/NextImage'
+import { SearchField } from '@/elements/SearchField/SearchField'
+import { Seo } from '@/elements/Seo/Seo'
 
-import { CertificatesLayout } from '../../layouts/Main/CertificateLayout'
+import { GetCertificateResponse } from '@/types/response'
+import { Certificate } from '@/types/type'
+export default function CertificatesIndexPage() {
+  const [input, setInput] = useState('')
+  const [certificate, setCertificateData] = useState<Certificate>()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
-const CertificatesPage = () => {
-  const [input, setInput] = useState<string>('')
-  const router = useRouter()
-
+  useEffect(() => {
+    const fetchCertificate = async () => {
+      try {
+        setIsLoading(true)
+        const res = await axios.get<GetCertificateResponse>(
+          `/certificate/${input}`
+        )
+        setCertificateData(res.data.data[0])
+        console.log(res.data)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    input && fetchCertificate()
+  }, [input])
   return (
-    <>
-      <Head>
-        <title>UG I/O - Certificates</title>
-      </Head>
-      <CertificatesLayout>
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography component='h1' mb={4} variant='h6'>
-            Validate a certificate from us
-          </Typography>
-          <Box sx={{ mb: 2 }}>
-            <Input
-              value={input}
-              inputProps={{ style: { textAlign: 'center' } }}
-              onChange={(e) => setInput(e.target.value)}
-              required
-              placeholder='Copy & paste your certificate serial number here'
-              fullWidth
-              sx={{ fontWeight: 700 }}
-            />
-          </Box>
-          <Button
-            variant='contained'
-            fullWidth
-            onClick={() => input && router.push(`/certificates/${input}`)}
+    <Layout>
+      <Seo templateTitle='Index' />
+
+      <main>
+        <section className=''>
+          <div
+            className='layout flex min-h-screen flex-col 
+            items-center justify-center py-20'
           >
-            SEARCH
-          </Button>
-        </Box>
-      </CertificatesLayout>
-    </>
+            <NextImage
+              className='relative h-[200px] w-full'
+              src='/assets/images/logo-text.png'
+              layout='fill'
+              objectFit='contain'
+              alt='Gunadarma I/O Logo'
+            />
+            <h3 className='mb-8'>Validate certificates from us</h3>
+            <SearchField
+              input={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <div>
+              <Document
+                file={{
+                  url: certificate?.file,
+                }}
+                onLoadError={(e) => {
+                  console.error(e)
+                }}
+              >
+                <Page pageNumber={1} />
+              </Document>
+              {console.log(certificate?.file)}
+            </div>
+          </div>
+        </section>
+      </main>
+    </Layout>
   )
 }
-
-export default CertificatesPage
