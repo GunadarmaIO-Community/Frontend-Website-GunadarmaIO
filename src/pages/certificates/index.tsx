@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
-import { Document, Page } from 'react-pdf'
+import { Document, Page, pdfjs } from 'react-pdf'
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`
 import { useWindowSize } from 'src/hooks/useWIndowSize'
 import { Layout } from 'src/layouts/Main/Layout'
 
