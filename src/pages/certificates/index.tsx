@@ -1,18 +1,37 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Document, Page, pdfjs } from 'react-pdf'
+import { useEffect, useRef, useState } from 'react'
+import { Document, Page } from 'react-pdf'
+import { useWindowSize } from 'src/hooks/useWIndowSize'
 import { Layout } from 'src/layouts/Main/Layout'
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
+
+import { Button } from '@/elements/Button/Button'
 import { NextImage } from '@/elements/NextImage/NextImage'
 import { SearchField } from '@/elements/SearchField/SearchField'
 import { Seo } from '@/elements/Seo/Seo'
+import { Spinner } from '@/elements/Spinner/Spinner'
+import { UnstyledLink } from '@/elements/UnstyledLink/UnstyledLink'
 
 import { GetCertificateResponse } from '@/types/response'
 import { Certificate } from '@/types/type'
+
 export default function CertificatesIndexPage() {
   const [input, setInput] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const [certificate, setCertificateData] = useState<Certificate>()
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const linkEl = useRef<HTMLAnchorElement>(null)
+  const windowSize = useWindowSize()
+
+  const generateBlobUrl = async (id: string) => {
+    const res = await axios.get(`/certificate/storage/${id}`, {
+      headers: { 'Content-Type': 'application/pdf' },
+      responseType: 'blob',
+    })
+
+    if (linkEl.current) {
+      linkEl.current.download = `Certificate.pdf`
+      linkEl.current.href = window.URL.createObjectURL(new Blob([res.data]))
+    }
+  }
 
   useEffect(() => {
     const fetchCertificate = async () => {
@@ -22,9 +41,10 @@ export default function CertificatesIndexPage() {
           `/certificate/${input}`
         )
         setCertificateData(res.data.data[0])
-        console.log(res.data)
+        generateBlobUrl(res.data.data[0].id)
       } catch (e) {
         console.error(e)
+        setCertificateData(undefined)
       } finally {
         setIsLoading(false)
       }
@@ -33,16 +53,16 @@ export default function CertificatesIndexPage() {
   }, [input])
   return (
     <Layout>
-      <Seo templateTitle='Index' />
+      <Seo templateTitle='Certificate' />
 
       <main>
         <section className=''>
           <div
             className='layout flex min-h-screen flex-col 
-            items-center justify-center py-20'
+            items-center py-20'
           >
             <NextImage
-              className='relative h-[200px] w-full'
+              className='relative h-[100px] w-full sm:h-[200px]'
               src='/assets/images/logo-text.png'
               layout='fill'
               objectFit='contain'
@@ -53,19 +73,34 @@ export default function CertificatesIndexPage() {
               input={input}
               onChange={(e) => setInput(e.target.value)}
             />
-            <div>
-              <Document
-                file={{
-                  url: certificate?.file,
-                }}
-                onLoadError={(e) => {
-                  console.error(e)
-                }}
-              >
-                <Page pageNumber={1} />
-              </Document>
-              {console.log(certificate?.file)}
-            </div>
+            <Document
+              className='mt-6 mb-4 sm:mt-11'
+              file={
+                certificate?.file &&
+                `data:application/pdf;base64,${certificate?.file}`
+              }
+              onLoadError={(e) => {
+                console.error(e)
+              }}
+              noData={
+                !input.length ? (
+                  ''
+                ) : isLoading ? (
+                  <Spinner />
+                ) : (
+                  'Certificate not found'
+                )
+              }
+              error='Sorry, something went wrong'
+              loading={<Spinner />}
+            >
+              <Page pageNumber={1} width={windowSize.width * 0.8} />
+            </Document>
+            {certificate?.file && !isLoading && (
+              <UnstyledLink ref={linkEl} openNewTab href=''>
+                <Button>Download certificate</Button>
+              </UnstyledLink>
+            )}
           </div>
         </section>
       </main>
