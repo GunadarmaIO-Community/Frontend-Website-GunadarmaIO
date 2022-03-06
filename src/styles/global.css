@@ -90,3 +90,8 @@
     background-size: 0 2px, 100% 2px;
   }
 }
+
+:root {
+  --primary-color: #006ee6;
+  --white-bg: #fdfdfd;
+}
