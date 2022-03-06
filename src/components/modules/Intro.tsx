@@ -15,16 +15,16 @@ export default function Intro() {
         </div>
       </div>
       <div className='flex flex-col pt-10'>
-        <div className='flex items-center'>
-          <div className='w-1/2 p-5 md:w-3/5'>
-            <p className='text-justify'>
+        <div className='flex flex-col-reverse items-center md:flex-row'>
+          <div className='w-full p-5 md:w-3/5'>
+            <p>
               We are here as a community engaged in competitive programming.
               Competitive programming is a branch of advanced programming
               science that is the development and manifestation of the data
               structures & algorithms fields
             </p>
           </div>
-          <div className='w-1/2 md:w-2/5'>
+          <div className='w-full md:w-2/5'>
             <NextImage
               className='relative h-[250px] w-full'
               src='/assets/images/intro-1.png'
@@ -33,8 +33,8 @@ export default function Intro() {
             />
           </div>
         </div>
-        <div className='flex items-center'>
-          <div className='w-1/2 md:w-2/5'>
+        <div className='flex flex-col items-center md:flex-row'>
+          <div className='w-full md:w-2/5'>
             <NextImage
               className='relative h-[270px] w-full'
               src='/assets/images/intro-2.png'
@@ -42,8 +42,8 @@ export default function Intro() {
               objectFit='contain'
             />
           </div>
-          <div className='w-1/2 p-5 md:w-3/5'>
-            <p className='text-justify'>
+          <div className='w-full p-5 md:w-3/5'>
+            <p>
               Competitive programming is also often used as a competition for IT
               students where the competition requires participants solve a
               problem algorithmically through a computer program. The program
