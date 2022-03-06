@@ -1,47 +1,109 @@
-import { Button, Input, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useRef, useState } from 'react'
+import { Document, Page } from 'react-pdf'
+import { useWindowSize } from 'src/hooks/useWIndowSize'
+import { Layout } from 'src/layouts/Main/Layout'
 
-import { CertificatesLayout } from '../../layouts/Main/CertificateLayout'
+import { Button } from '@/elements/Button/Button'
+import { NextImage } from '@/elements/NextImage/NextImage'
+import { SearchField } from '@/elements/SearchField/SearchField'
+import { Seo } from '@/elements/Seo/Seo'
+import { Spinner } from '@/elements/Spinner/Spinner'
+import { UnstyledLink } from '@/elements/UnstyledLink/UnstyledLink'
 
-const CertificatesPage = () => {
-  const [input, setInput] = useState<string>('')
-  const router = useRouter()
+import { GetCertificateResponse } from '@/types/response'
+import { Certificate } from '@/types/type'
 
+export default function CertificatesIndexPage() {
+  const [input, setInput] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [certificate, setCertificateData] = useState<Certificate>()
+  const linkEl = useRef<HTMLAnchorElement>(null)
+  const windowSize = useWindowSize()
+
+  const generateBlobUrl = async (id: string) => {
+    const res = await axios.get(`/certificate/storage/${id}`, {
+      headers: { 'Content-Type': 'application/pdf' },
+      responseType: 'blob',
+    })
+
+    if (linkEl.current) {
+      linkEl.current.download = `Certificate.pdf`
+      linkEl.current.href = window.URL.createObjectURL(new Blob([res.data]))
+    }
+  }
+
+  useEffect(() => {
+    const fetchCertificate = async () => {
+      try {
+        setIsLoading(true)
+        const res = await axios.get<GetCertificateResponse>(
+          `/certificate/${input}`
+        )
+        setCertificateData(res.data.data[0])
+        generateBlobUrl(res.data.data[0].id)
+      } catch (e) {
+        console.error(e)
+        setCertificateData(undefined)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    input && fetchCertificate()
+  }, [input])
   return (
-    <>
-      <Head>
-        <title>UG I/O - Certificates</title>
-      </Head>
-      <CertificatesLayout>
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography component='h1' mb={4} variant='h6'>
-            Validate a certificate from us
-          </Typography>
-          <Box sx={{ mb: 2 }}>
-            <Input
-              value={input}
-              inputProps={{ style: { textAlign: 'center' } }}
-              onChange={(e) => setInput(e.target.value)}
-              required
-              placeholder='Copy & paste your certificate serial number here'
-              fullWidth
-              sx={{ fontWeight: 700 }}
-            />
-          </Box>
-          <Button
-            variant='contained'
-            fullWidth
-            onClick={() => input && router.push(`/certificates/${input}`)}
+    <Layout>
+      <Seo templateTitle='Certificate' />
+
+      <main>
+        <section className=''>
+          <div
+            className='layout flex min-h-screen flex-col 
+            items-center py-20'
           >
-            SEARCH
-          </Button>
-        </Box>
-      </CertificatesLayout>
-    </>
+            <NextImage
+              className='relative h-[100px] w-full sm:h-[200px]'
+              src='/assets/images/logo-text.png'
+              layout='fill'
+              objectFit='contain'
+              alt='Gunadarma I/O Logo'
+            />
+            <h3 className='mb-8'>Validate certificates from us</h3>
+            <SearchField
+              input={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <Document
+              className='mt-6 mb-4 sm:mt-11'
+              file={
+                certificate?.file &&
+                `data:application/pdf;base64,${certificate?.file}`
+              }
+              onLoadError={(e) => {
+                console.error(e)
+              }}
+              noData={
+                !input.length ? (
+                  ''
+                ) : isLoading ? (
+                  <Spinner />
+                ) : (
+                  'Certificate not found'
+                )
+              }
+              error='Sorry, something went wrong'
+              loading={<Spinner />}
+            >
+              <Page pageNumber={1} width={windowSize.width * 0.8} />
+            </Document>
+            {certificate?.file && !isLoading && (
+              <UnstyledLink ref={linkEl} openNewTab href=''>
+                <Button>Download certificate</Button>
+              </UnstyledLink>
+            )}
+          </div>
+        </section>
+      </main>
+    </Layout>
   )
 }
-
-export default CertificatesPage

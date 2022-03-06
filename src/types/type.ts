@@ -4,6 +4,7 @@ export type Certificate = {
   nama: string
   email: string
   user_id: string
+  url: string
   event_id: string
   file: string
   type: string
