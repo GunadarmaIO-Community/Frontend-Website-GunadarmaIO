@@ -1,6 +1,6 @@
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export default function Intro() {
+export const Intro = () => {
   return (
     <div className='flex flex-col'>
       <div className='flex justify-center'>
