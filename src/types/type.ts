@@ -11,3 +11,25 @@ export type Certificate = {
   created_at: string
   updated_at: string
 }
+
+export type Division = {
+  id: number
+  nama: string
+  deskripsi: string
+  status: number
+  created_at: string
+  updated_at: string
+  deleted_at: string
+  slug: string
+  teams: {
+    id: number
+    nama: string
+    foto: string
+    divisi_id: number
+    status: number
+    created_at: string
+    updated_at: string
+    deleted_at: string
+    email: string
+  }[]
+}
