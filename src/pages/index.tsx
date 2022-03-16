@@ -4,7 +4,7 @@ import { Layout } from 'src/layouts/Main/Layout'
 
 import { Seo } from '@/elements/Seo/Seo'
 import { Intro } from '@/modules/Intro/Intro'
-import Event from '@/modules/Event'
+import { Event } from '@/modules/Event/Event'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
 
 import { GetDivisionResponse } from '@/types/response'

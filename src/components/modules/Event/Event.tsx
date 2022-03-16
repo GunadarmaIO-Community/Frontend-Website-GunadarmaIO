@@ -1,7 +1,7 @@
 import { NextImage } from '@/elements/NextImage/NextImage'
 import Link from 'next/link'
 
-export default function Event() {
+export const Event = () => {
   return (
     <div className='mt-10 flex flex-col'>
       <div className='flex justify-center'>
