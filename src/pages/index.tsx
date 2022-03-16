@@ -5,6 +5,7 @@ import { Layout } from 'src/layouts/Main/Layout'
 import { Seo } from '@/elements/Seo/Seo'
 import { Intro } from '@/modules/Intro/Intro'
 import { Event } from '@/modules/Event/Event'
+import { EventList } from '@/modules/EventList/EventList'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
 
 import { GetDivisionResponse } from '@/types/response'
@@ -22,8 +23,9 @@ export default function IndexPage({ divisions }: Props) {
         <section className=''>
           <div className='layout min-h-screen py-20'>
             <Intro />
-            <Event />
             <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
+            <Event />
+            <EventList />
           </div>
         </section>
       </main>
