@@ -1,7 +1,7 @@
 import { NextImage } from '@/elements/NextImage/NextImage'
 import Link from 'next/link'
 
-export default function Event() {
+export const Event = () => {
   return (
     <div className='mt-10 flex flex-col'>
       <div className='flex justify-center'>
@@ -11,17 +11,14 @@ export default function Event() {
             <span className='text-primary-500'>participate</span> in it
           </h1>
           <p className='pt-5 text-center'>
-            Through our events, we aim to create a lasting impact for our
-            participants in their journey of exploring the vast world of
-            technology
+            Through our events, we aim to create a lasting impact for our participants in their journey of exploring the
+            vast world of technology
           </p>
         </div>
       </div>
       <div className='mt-10 flex justify-end'>
         <Link href='/'>
-          <a className='font-bold text-primary-500 hover:opacity-75'>
-            View All Events
-          </a>
+          <a className='font-bold text-primary-500 hover:opacity-75'>View All Events</a>
         </Link>
       </div>
       <div className='mt-5 rounded-[24px] bg-gradient-to-b from-primary-500 to-primary-700'>
@@ -36,21 +33,17 @@ export default function Event() {
           </div>
           <div className='mt-3 flex w-full flex-col gap-y-5 text-secondary-500 lg:w-7/12'>
             <p>
-              March 13, 2022{' '}
-              <span className='text-[#54C659]'>(18:00 - 21:00 WIB)</span>
+              March 13, 2022 <span className='text-[#54C659]'>(18:00 - 21:00 WIB)</span>
             </p>
             <h3 className='font-bold'>Data Structure Non Linear: Recursion</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.{' '}
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.{' '}
             </p>
             <div className='flex flex-row'>
               <div className='flex w-full shrink'>
-                <button className='rounded-[8px] bg-[#54C659] p-3 font-bold hover:opacity-75'>
-                  Join Event!
-                </button>
+                <button className='rounded-[8px] bg-[#54C659] p-3 font-bold hover:opacity-75'>Join Event!</button>
               </div>
               <div className='mr-8 flex shrink-0'>
                 <button className='rounded-full bg-secondary-500 p-3 hover:opacity-75'>
@@ -61,11 +54,7 @@ export default function Event() {
                     viewBox='0 0 24 24'
                     strokeWidth={3}
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M10 19l-7-7m0 0l7-7m-7 7h18'
-                    />
+                    <path strokeLinecap='round' strokeLinejoin='round' d='M10 19l-7-7m0 0l7-7m-7 7h18' />
                   </svg>
                 </button>
               </div>
@@ -78,11 +67,7 @@ export default function Event() {
                     viewBox='0 0 24 24'
                     strokeWidth={3}
                   >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M14 5l7 7m0 0l-7 7m7-7H3'
-                    />
+                    <path strokeLinecap='round' strokeLinejoin='round' d='M14 5l7 7m0 0l-7 7m7-7H3' />
                   </svg>
                 </button>
               </div>
