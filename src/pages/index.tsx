@@ -8,14 +8,17 @@ import { Event } from '@/modules/Event/Event'
 import { EventList } from '@/modules/EventList/EventList'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
 
+import { GetEventListResponse } from '@/types/response'
+import { EventListAPI } from '@/types/type'
 import { GetDivisionResponse } from '@/types/response'
 import { Division } from '@/types/type'
 
 type Props = {
   divisions: Division[]
+  eventLists: EventListAPI[]
 }
 
-export default function IndexPage({ divisions }: Props) {
+export default function IndexPage({ divisions, eventLists }: Props) {
   return (
     <Layout>
       <Seo templateTitle='Index' />
@@ -25,7 +28,7 @@ export default function IndexPage({ divisions }: Props) {
             <Intro />
             <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
             <Event />
-            <EventList />
+            <EventList eventLists={eventLists} />
           </div>
         </section>
       </main>
@@ -46,7 +49,19 @@ export async function getStaticProps() {
 
   const divisions = await getDivision()
 
+  const getEventList = async (): Promise<EventListAPI[]> => {
+    try {
+      const resEventList = await axios.get<GetEventListResponse>('event')
+      return resEventList.data.data
+    } catch (err) {
+      console.error(err)
+      return []
+    }
+  }
+
+  const eventLists = await getEventList()
+
   return {
-    props: { divisions },
+    props: { divisions, eventLists },
   }
 }

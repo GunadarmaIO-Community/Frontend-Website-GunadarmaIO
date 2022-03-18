@@ -11,6 +11,8 @@ type Props = {
 }
 
 export const OurDivision = ({ divisions, className }: Props) => {
+  // console.log(divisions)
+
   const [selectedDivision, setSelectedDivision] = useState('mentor')
   const [selectedTab, setSelectedTab] = useState<'job-desc' | 'core-team'>('job-desc')
   const isMobile = useMediaQuery('(max-width: 640px)')
