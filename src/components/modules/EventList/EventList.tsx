@@ -23,18 +23,22 @@ export const EventList = ({ eventLists }: Props) => {
       </p>
       <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
         {eventLists.map((event, index) => (
-          <div key={index} className='rounded hover:opacity-75'>
-            <div className='w-full'>
-              <NextImage
-                className='relative h-[130px] w-full md:h-[200px]'
-                src={event.gambar}
-                layout='fill'
-                objectFit='contain'
-              />
-            </div>
-            <p className='font-bold text-primary-500'>{event.judul_event}</p>
-            <p>{event.detail_singkat}</p>
-          </div>
+          <Link href={`event/${event.slug}`} key={index}>
+            <a>
+              <div className='rounded hover:opacity-75'>
+                <div className='w-full'>
+                  <NextImage
+                    className='relative h-[130px] w-full md:h-[200px]'
+                    src={event.gambar}
+                    layout='fill'
+                    objectFit='contain'
+                  />
+                </div>
+                <p className='font-bold text-primary-500'>{event.judul_event}</p>
+                <p>{event.detail_singkat}</p>
+              </div>
+            </a>
+          </Link>
         ))}
       </div>
     </div>
