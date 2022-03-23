@@ -3,22 +3,22 @@ import * as React from 'react'
 import { Layout } from 'src/layouts/Main/Layout'
 
 import { Seo } from '@/elements/Seo/Seo'
-import { Intro } from '@/modules/Intro/Intro'
-import { Event } from '@/modules/Event/Event'
 import { EventList } from '@/modules/EventList/EventList'
+import { EventSection } from '@/modules/EventSection/EventSection'
+import { Intro } from '@/modules/Intro/Intro'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
 
-import { GetEventListResponse } from '@/types/response'
-import { EventListAPI } from '@/types/type'
+import { GetEventResponse } from '@/types/response'
 import { GetDivisionResponse } from '@/types/response'
+import { Event } from '@/types/type'
 import { Division } from '@/types/type'
 
 type Props = {
   divisions: Division[]
-  eventLists: EventListAPI[]
+  events: Event[]
 }
 
-export default function IndexPage({ divisions, eventLists }: Props) {
+export default function IndexPage({ divisions, events }: Props) {
   return (
     <Layout>
       <Seo templateTitle='Index' />
@@ -27,8 +27,8 @@ export default function IndexPage({ divisions, eventLists }: Props) {
           <div className='layout min-h-screen py-20'>
             <Intro />
             <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
-            <Event />
-            <EventList eventLists={eventLists} />
+            <EventSection />
+            <EventList events={events} />
           </div>
         </section>
       </main>
@@ -49,19 +49,19 @@ export async function getStaticProps() {
 
   const divisions = await getDivision()
 
-  const getEventList = async (): Promise<EventListAPI[]> => {
+  const getEvents = async (): Promise<Event[]> => {
     try {
-      const resEventList = await axios.get<GetEventListResponse>('event')
-      return resEventList.data.data
+      const resEvents = await axios.get<GetEventResponse>('event')
+      return resEvents.data.data
     } catch (err) {
       console.error(err)
       return []
     }
   }
 
-  const eventLists = await getEventList()
+  const events = await getEvents()
 
   return {
-    props: { divisions, eventLists },
+    props: { divisions, events },
   }
 }

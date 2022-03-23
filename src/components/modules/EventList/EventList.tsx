@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import { NextImage } from '@/elements/NextImage/NextImage'
 import Link from 'next/link'
 
-import { EventListAPI } from '@/types/type'
+import { NextImage } from '@/elements/NextImage/NextImage'
+
+import { Event } from '@/types/type'
 
 type Props = {
-  eventLists: EventListAPI[]
+  events: Event[]
 }
 
-export const EventList = ({ eventLists }: Props) => {
+export const EventList = ({ events }: Props) => {
   return (
     <div className='mt-28 flex flex-col'>
       <h1 className='text-center font-bold'>
@@ -22,7 +22,7 @@ export const EventList = ({ eventLists }: Props) => {
         </Link>
       </p>
       <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
-        {eventLists.map((event, index) => (
+        {events.map((event, index) => (
           <Link href={`event/${event.slug}`} key={index}>
             <a>
               <div className='rounded hover:opacity-75'>

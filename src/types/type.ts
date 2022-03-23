@@ -34,7 +34,7 @@ export type Division = {
   }[]
 }
 
-export type EventListAPI = {
+export type Event = {
   id: number
   judul_event: string
   slug: string

@@ -1,7 +1,8 @@
-import { NextImage } from '@/elements/NextImage/NextImage'
 import Link from 'next/link'
 
-export const Event = () => {
+import { NextImage } from '@/elements/NextImage/NextImage'
+
+export const EventSection = () => {
   return (
     <div className='mt-10 flex flex-col'>
       <div className='flex justify-center'>
