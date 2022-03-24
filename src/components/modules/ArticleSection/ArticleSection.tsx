@@ -8,7 +8,7 @@ type Props = {
   events: Event[]
 }
 
-export const EventList = ({ events }: Props) => {
+export const ArticleSection = ({ events }: Props) => {
   return (
     <div className='mt-28 flex flex-col'>
       <h1 className='text-center font-bold'>

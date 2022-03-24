@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Layout } from 'src/layouts/Main/Layout'
 
 import { Seo } from '@/elements/Seo/Seo'
-import { EventList } from '@/modules/EventList/EventList'
+import { ArticleSection } from '@/modules/ArticleSection/ArticleSection'
 import { EventSection } from '@/modules/EventSection/EventSection'
 import { Intro } from '@/modules/Intro/Intro'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
@@ -28,7 +28,7 @@ export default function IndexPage({ divisions, events }: Props) {
             <Intro />
             <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
             <EventSection />
-            <EventList events={events} />
+            <ArticleSection events={events} />
           </div>
         </section>
       </main>
