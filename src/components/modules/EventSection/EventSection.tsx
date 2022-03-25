@@ -3,14 +3,16 @@ import { useState } from 'react'
 
 import { NextImage } from '@/elements/NextImage/NextImage'
 
+import { Event } from '@/types/type'
+
 const Slide = ({ event, className }) => {
   return (
     <div className={className}>
-      <div className='flex flex-col md:gap-8 lg:m-5 lg:flex-row'>
-        <div className='w-full lg:w-5/12'>
+      <div className='flex w-full flex-col lg:m-5 lg:flex-row'>
+        <div className='w-full lg:mr-5 lg:w-5/12'>
           <NextImage
             className='relative h-[200px] md:w-full lg:h-[250px]'
-            src='/assets/images/event.png'
+            src={event.gambar}
             layout='fill'
             objectFit='contain'
           />
@@ -19,12 +21,8 @@ const Slide = ({ event, className }) => {
           <p>
             March 13, 2022 <span className='text-[#54C659]'>(18:00 - 21:00 WIB)</span>
           </p>
-          <h3 className='font-bold'>{event.title}</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.{' '}
-          </p>
+          <h3 className='font-bold'>{event.judul_event}</h3>
+          <p>{event.detail_singkat}</p>
           <div className='flex w-full shrink'>
             <button className='rounded-[8px] bg-[#54C659] p-3 font-bold hover:opacity-75'>Join Event!</button>
           </div>
@@ -34,8 +32,11 @@ const Slide = ({ event, className }) => {
   )
 }
 
-export const EventSection = () => {
-  const [event] = useState([{ title: 'Event Title 1' }, { title: 'Event Title 2' }, { title: 'Event Title 3' }])
+type Props = {
+  events: Event[]
+}
+
+export const EventSection = ({ events }: Props) => {
   const [active, setActive] = useState(0)
   const [activeStyle, setActiveStyle] = useState('block')
   const [btnActive, setBtnActive] = useState(true)
@@ -45,7 +46,7 @@ export const EventSection = () => {
       setBtnActive(false)
       setActiveStyle('translate-x-[2000px]')
       setTimeout(() => {
-        setActive(active ? --active : event.length - 1)
+        setActive(active ? --active : events.length - 1)
         setActiveStyle('block translate-x-[-2000px]')
       }, 300)
       setTimeout(() => {
@@ -60,7 +61,7 @@ export const EventSection = () => {
       setBtnActive(false)
       setActiveStyle('translate-x-[-2000px]')
       setTimeout(() => {
-        setActive(++active % event.length)
+        setActive(++active % events.length)
         setActiveStyle('block translate-x-[2000px]')
       }, 300)
       setTimeout(() => {
@@ -91,11 +92,11 @@ export const EventSection = () => {
       </div>
       <div className='mt-5 rounded-[24px] bg-gradient-to-b from-primary-500 to-primary-700'>
         <div className='relative m-5 overflow-hidden'>
-          {event.map((event, index) => (
+          {events.map((event, index) => (
             <Slide
               key={index}
               event={event}
-              className={`w-100 relative float-left transition duration-500 ease-in-out ${
+              className={`relative float-left w-full transition duration-500 ease-in-out ${
                 index == active ? activeStyle : 'hidden'
               }`}
             />
