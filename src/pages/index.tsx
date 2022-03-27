@@ -3,18 +3,22 @@ import * as React from 'react'
 import { Layout } from 'src/layouts/Main/Layout'
 
 import { Seo } from '@/elements/Seo/Seo'
-import Event from '@/modules/Event'
-import Intro from '@/modules/Intro'
+import { ArticleSection } from '@/modules/ArticleSection/ArticleSection'
+import { EventSection } from '@/modules/EventSection/EventSection'
+import { Intro } from '@/modules/Intro/Intro'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
 
+import { GetEventResponse } from '@/types/response'
 import { GetDivisionResponse } from '@/types/response'
+import { Event } from '@/types/type'
 import { Division } from '@/types/type'
 
 type Props = {
   divisions: Division[]
+  events: Event[]
 }
 
-export default function IndexPage({ divisions }: Props) {
+export default function IndexPage({ divisions, events }: Props) {
   return (
     <Layout>
       <Seo templateTitle='Index' />
@@ -22,8 +26,9 @@ export default function IndexPage({ divisions }: Props) {
         <section className=''>
           <div className='layout min-h-screen py-20'>
             <Intro />
-            <Event />
             <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
+            <EventSection events={events} />
+            <ArticleSection events={events} />
           </div>
         </section>
       </main>
@@ -44,7 +49,19 @@ export async function getStaticProps() {
 
   const divisions = await getDivision()
 
+  const getEvents = async (): Promise<Event[]> => {
+    try {
+      const resEvents = await axios.get<GetEventResponse>('event')
+      return resEvents.data.data
+    } catch (err) {
+      console.error(err)
+      return []
+    }
+  }
+
+  const events = await getEvents()
+
   return {
-    props: { divisions },
+    props: { divisions, events },
   }
 }

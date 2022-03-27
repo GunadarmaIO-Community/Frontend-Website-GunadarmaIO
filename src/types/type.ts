@@ -33,3 +33,21 @@ export type Division = {
     email: string
   }[]
 }
+
+export type Event = {
+  id: number
+  judul_event: string
+  slug: string
+  detail_singkat: string
+  detail_lengkap: string
+  gambar: string
+  tanggal_pelaksanaan: string
+  tempat_pelaksanaan: string
+  batas_peserta: number
+  status: number
+  batas_pendaftaran: string
+  url: string
+  created_at: string
+  updated_at: string
+  deleted_at: string
+}
