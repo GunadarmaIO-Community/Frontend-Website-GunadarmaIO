@@ -1,6 +1,6 @@
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const Intro = () => {
+export const AboutSection = () => {
   return (
     <div className='flex flex-col'>
       <div className='flex justify-center'>
