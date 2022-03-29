@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'src/hooks/useMediaQuery'
 
 import { Button } from '@/elements/Button/Button'
@@ -8,6 +8,7 @@ export const AboutSection = () => {
   const [active, setActive] = useState(0)
   const [activeStyle, setActiveStyle] = useState('block')
   const [btnActive, setBtnActive] = useState(true)
+  const [isRight, setIsRight] = useState(true)
   const isMobile = useMediaQuery('(max-width: 640px)')
 
   const STATS = [
@@ -16,8 +17,14 @@ export const AboutSection = () => {
     { name: 'Official Partnership', count: 15, icon: '/assets/icons/handshake-icon.svg' },
   ]
 
+  useEffect(() => {
+    const timer = setInterval(() => (isRight ? handleNextSlide() : handlePrevSlide()), 3000)
+    return () => clearTimeout(timer)
+  })
+
   const handlePrevSlide = () => {
     if (btnActive) {
+      setIsRight(false)
       setBtnActive(false)
       setActiveStyle('translate-x-[300px]')
       setTimeout(() => {
@@ -33,6 +40,7 @@ export const AboutSection = () => {
 
   const handleNextSlide = () => {
     if (btnActive) {
+      setIsRight(true)
       setBtnActive(false)
       setActiveStyle('translate-x-[-300px]')
       setTimeout(() => {
