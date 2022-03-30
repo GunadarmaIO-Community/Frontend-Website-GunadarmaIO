@@ -28,7 +28,7 @@ export const AboutSection = () => {
       setBtnActive(false)
       setActiveStyle('translate-x-[300px]')
       setTimeout(() => {
-        setActive(active ? --active : STATS.length - 1)
+        setActive(active ? active - 1 : STATS.length - 1)
         setActiveStyle('block translate-x-[-300px]')
       }, 300)
       setTimeout(() => {
@@ -44,7 +44,7 @@ export const AboutSection = () => {
       setBtnActive(false)
       setActiveStyle('translate-x-[-300px]')
       setTimeout(() => {
-        setActive(++active % STATS.length)
+        setActive((active + 1) % STATS.length)
         setActiveStyle('block translate-x-[300px]')
       }, 300)
       setTimeout(() => {
