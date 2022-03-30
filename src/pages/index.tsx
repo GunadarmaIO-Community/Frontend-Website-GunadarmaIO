@@ -3,10 +3,12 @@ import * as React from 'react'
 import { Layout } from 'src/layouts/Main/Layout'
 
 import { Seo } from '@/elements/Seo/Seo'
-import { AboutSection } from '@/modules/AboutSection/AboutSection'
 import { ArticleSection } from '@/modules/ArticleSection/ArticleSection'
 import { EventSection } from '@/modules/EventSection/EventSection'
+import { HeroSection } from '@/modules/HeroSection/HeroSection'
+import { IntroSection } from '@/modules/IntroSection/IntroSection'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
+import { StatsSection } from '@/modules/StatsSection/StatsSection'
 
 import { GetEventResponse } from '@/types/response'
 import { GetDivisionResponse } from '@/types/response'
@@ -23,14 +25,16 @@ export default function IndexPage({ divisions, events }: Props) {
     <Layout>
       <Seo templateTitle='Index' />
       <main>
-        <section className=''>
-          <div className='layout min-h-screen py-20'>
-            <AboutSection />
-            <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
-            <EventSection events={events} />
-            <ArticleSection events={events} />
-          </div>
-        </section>
+        <div className='layout py-20'>
+          <HeroSection />
+        </div>
+        <StatsSection />
+        <div className='layout min-h-screen py-20'>
+          <IntroSection />
+          <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
+          <EventSection events={events} />
+          <ArticleSection events={events} />
+        </div>
       </main>
     </Layout>
   )
