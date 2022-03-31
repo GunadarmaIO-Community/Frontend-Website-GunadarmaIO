@@ -4,11 +4,6 @@ import { NextImage } from '@/elements/NextImage/NextImage'
 
 export const HistorySection = () => {
   const [active, setActive] = useState(0)
-  const [next, setNext] = useState(1)
-  const [prev, setPrev] = useState(2)
-  const [activeStyle, setActiveStyle] = useState('z-10')
-  const [nextStyle, setNextStyle] = useState('translate-x-[200px] translate-y-[50px]')
-  const [prevStyle, setPrevStyle] = useState('translate-x-[-200px] translate-y-[50px]')
 
   const COMPETITIONS = [
     {
@@ -29,18 +24,8 @@ export const HistorySection = () => {
   ]
 
   const handleNextSlide = useCallback(() => {
-    setActiveStyle('translate-x-[-200px] translate-y-[50px]')
-    setNextStyle('z-10')
-    setPrevStyle('translate-x-[200px] translate-y-[50px]')
-    setTimeout(() => {
-      setActive((active + 1) % 3)
-      setNext((next + 1) % 3)
-      setPrev((prev + 1) % 3)
-      setActiveStyle('z-10')
-      setNextStyle('translate-x-[200px] translate-y-[50px]')
-      setPrevStyle('translate-x-[-200px] translate-y-[50px]')
-    }, 300)
-  }, [active, next, prev])
+    setActive((active + 1) % 3)
+  }, [active])
 
   useEffect(() => {
     const timer = setInterval(() => handleNextSlide(), 5000)
@@ -61,15 +46,15 @@ export const HistorySection = () => {
           <div
             key={index}
             className={`absolute flex h-[300px] w-[300px] rounded-[20px] bg-white transition duration-500 ease-in-out ${
-              index == active ? activeStyle : index == next ? nextStyle : prevStyle
+              index == active
+                ? 'z-10'
+                : index == (active + 1) % 3
+                ? 'translate-x-[200px] translate-y-[50px]'
+                : 'translate-x-[-200px] translate-y-[50px]'
             }`}
             onClick={() => handleNextSlide()}
           >
-            {index != active ? (
-              <div className='absolute z-20 h-full w-full rounded-[20px] bg-black opacity-50'></div>
-            ) : (
-              ''
-            )}
+            {index != active && <div className='absolute z-20 h-full w-full rounded-[20px] bg-black opacity-50'></div>}
             <div className='flex h-full w-full flex-col justify-center text-center'>
               <div className='w-full'>
                 <NextImage
