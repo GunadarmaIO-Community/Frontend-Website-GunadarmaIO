@@ -4,6 +4,7 @@ import { NextImage } from '@/elements/NextImage/NextImage'
 
 export const HistorySection = () => {
   const [active, setActive] = useState(0)
+  const [btnActive, setBtnActive] = useState(true)
 
   const COMPETITIONS = [
     {
@@ -24,8 +25,14 @@ export const HistorySection = () => {
   ]
 
   const handleNextSlide = useCallback(() => {
-    setActive((active + 1) % 3)
-  }, [active])
+    if (btnActive) {
+      setBtnActive(false)
+      setActive((active + 1) % 3)
+      setTimeout(() => {
+        setBtnActive(true)
+      }, 500)
+    }
+  }, [active, btnActive])
 
   useEffect(() => {
     const timer = setInterval(() => handleNextSlide(), 5000)
