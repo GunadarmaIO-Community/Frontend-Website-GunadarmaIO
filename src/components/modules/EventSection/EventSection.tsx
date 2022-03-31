@@ -46,7 +46,7 @@ export const EventSection = ({ events }: Props) => {
       setBtnActive(false)
       setActiveStyle('translate-x-[2000px]')
       setTimeout(() => {
-        setActive(active ? --active : events.length - 1)
+        setActive(active ? active - 1 : events.length - 1)
         setActiveStyle('block translate-x-[-2000px]')
       }, 300)
       setTimeout(() => {
@@ -61,7 +61,7 @@ export const EventSection = ({ events }: Props) => {
       setBtnActive(false)
       setActiveStyle('translate-x-[-2000px]')
       setTimeout(() => {
-        setActive(++active % events.length)
+        setActive(active + (1 % events.length))
         setActiveStyle('block translate-x-[2000px]')
       }, 300)
       setTimeout(() => {
