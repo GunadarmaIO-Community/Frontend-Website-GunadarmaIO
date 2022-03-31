@@ -6,6 +6,7 @@ import { Seo } from '@/elements/Seo/Seo'
 import { ArticleSection } from '@/modules/ArticleSection/ArticleSection'
 import { EventSection } from '@/modules/EventSection/EventSection'
 import { HeroSection } from '@/modules/HeroSection/HeroSection'
+import { HistorySection } from '@/modules/HistorySection/HistorySection'
 import { IntroSection } from '@/modules/IntroSection/IntroSection'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
 import { StatsSection } from '@/modules/StatsSection/StatsSection'
@@ -34,6 +35,7 @@ export default function IndexPage({ divisions, events }: Props) {
           <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
           <EventSection events={events} />
           <ArticleSection events={events} />
+          <HistorySection />
         </div>
       </main>
     </Layout>
