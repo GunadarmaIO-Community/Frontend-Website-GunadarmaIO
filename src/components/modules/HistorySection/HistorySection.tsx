@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+
+import { NextImage } from '@/elements/NextImage/NextImage'
 
 export const HistorySection = () => {
   const [active, setActive] = useState(0)
@@ -9,17 +11,24 @@ export const HistorySection = () => {
   const [prevStyle, setPrevStyle] = useState('translate-x-[-200px] translate-y-[50px]')
 
   const COMPETITIONS = [
-    { title: 'Lomba 1', organizer: 'Universitas Indonesia', img: 'Gambar Lomba 1' },
-    { title: 'Lomba 2', organizer: 'Universitas Gajah Mada', img: 'Gambar Lomba 2' },
-    { title: 'Lomba 3', organizer: 'Universitas Brawijaya', img: 'Gambar Lomba 3' },
+    {
+      title: 'Lomba 1',
+      organizer: 'Universitas Indonesia',
+      img: 'https://cdn.discordapp.com/attachments/826088171212636211/959083610831474729/compfest13-color_1.jpg',
+    },
+    {
+      title: 'Lomba 2',
+      organizer: 'Universitas Gajah Mada',
+      img: 'https://cdn.discordapp.com/attachments/826088171212636211/959083610831474729/compfest13-color_1.jpg',
+    },
+    {
+      title: 'Lomba 3',
+      organizer: 'Universitas Brawijaya',
+      img: 'https://cdn.discordapp.com/attachments/826088171212636211/959083610831474729/compfest13-color_1.jpg',
+    },
   ]
 
-  useEffect(() => {
-    const timer = setInterval(() => handleNextSlide(), 3000)
-    return () => clearTimeout(timer)
-  })
-
-  const handleNextSlide = () => {
+  const handleNextSlide = useCallback(() => {
     setActiveStyle('translate-x-[-200px] translate-y-[50px]')
     setNextStyle('z-10')
     setPrevStyle('translate-x-[200px] translate-y-[50px]')
@@ -31,7 +40,12 @@ export const HistorySection = () => {
       setNextStyle('translate-x-[200px] translate-y-[50px]')
       setPrevStyle('translate-x-[-200px] translate-y-[50px]')
     }, 300)
-  }
+  }, [active, next, prev])
+
+  useEffect(() => {
+    const timer = setInterval(() => handleNextSlide(), 5000)
+    return () => clearTimeout(timer)
+  }, [handleNextSlide])
 
   return (
     <div className='flex flex-col items-center'>
@@ -42,7 +56,7 @@ export const HistorySection = () => {
         Over the years, our members have conquered many IT competitions across the nation. They’ve become our pride who
         will continue to astonish us!
       </p>
-      <div className='mt-5 flex w-full justify-center'>
+      <div className='relative mt-5 flex h-[350px] w-full justify-center overflow-hidden'>
         {COMPETITIONS.map((competition, index) => (
           <div
             key={index}
@@ -51,9 +65,20 @@ export const HistorySection = () => {
             }`}
             onClick={() => handleNextSlide()}
           >
-            {index != active ? <div className='absolute h-full w-full rounded-[20px] bg-black opacity-50'></div> : ''}
+            {index != active ? (
+              <div className='absolute z-20 h-full w-full rounded-[20px] bg-black opacity-50'></div>
+            ) : (
+              ''
+            )}
             <div className='flex h-full w-full flex-col justify-center text-center'>
-              <p>{competition.img}</p>
+              <div className='w-full'>
+                <NextImage
+                  className='relative h-[120px] w-full'
+                  src={competition.img}
+                  layout='fill'
+                  objectFit='contain'
+                />
+              </div>
               <p className='mt-3'>{competition.title}</p>
               <p className='mt-3 font-bold'>{competition.organizer}</p>
             </div>
