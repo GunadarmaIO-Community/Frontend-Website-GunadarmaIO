@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { NextImage } from '@/elements/NextImage/NextImage'
 
@@ -40,9 +40,11 @@ export const EventSection = ({ events }: Props) => {
   const [active, setActive] = useState(0)
   const [activeStyle, setActiveStyle] = useState('block')
   const [btnActive, setBtnActive] = useState(true)
+  const [isRight, setIsRight] = useState(true)
 
-  const handlePrevSlide = () => {
+  const handlePrevSlide = useCallback(() => {
     if (btnActive) {
+      setIsRight(false)
       setBtnActive(false)
       setActiveStyle('translate-x-[2000px]')
       setTimeout(() => {
@@ -52,24 +54,30 @@ export const EventSection = ({ events }: Props) => {
       setTimeout(() => {
         setActiveStyle('block')
         setBtnActive(true)
-      }, 600)
+      }, 400)
     }
-  }
+  }, [active, events.length, btnActive])
 
-  const handleNextSlide = () => {
+  const handleNextSlide = useCallback(() => {
     if (btnActive) {
+      setIsRight(true)
       setBtnActive(false)
       setActiveStyle('translate-x-[-2000px]')
       setTimeout(() => {
-        setActive(active + (1 % events.length))
+        setActive((active + 1) % events.length)
         setActiveStyle('block translate-x-[2000px]')
       }, 300)
       setTimeout(() => {
         setActiveStyle('block')
         setBtnActive(true)
-      }, 600)
+      }, 400)
     }
-  }
+  }, [active, events.length, btnActive])
+
+  useEffect(() => {
+    const timer = setInterval(() => (isRight ? handleNextSlide() : handlePrevSlide()), 3000)
+    return () => clearTimeout(timer)
+  }, [isRight, handleNextSlide, handlePrevSlide])
 
   return (
     <div className='mt-10 flex flex-col'>
