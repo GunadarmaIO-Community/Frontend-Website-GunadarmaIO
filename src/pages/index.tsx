@@ -9,6 +9,7 @@ import { HeroSection } from '@/modules/HeroSection/HeroSection'
 import { HistorySection } from '@/modules/HistorySection/HistorySection'
 import { IntroSection } from '@/modules/IntroSection/IntroSection'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
+import { NewsLetterSection } from '@/modules/NewsLetterSection/NewsLetterSection'
 import { StatsSection } from '@/modules/StatsSection/StatsSection'
 
 import { GetEventResponse } from '@/types/response'
@@ -37,6 +38,7 @@ export default function IndexPage({ divisions, events }: Props) {
           <ArticleSection events={events} />
           <HistorySection />
         </div>
+        <NewsLetterSection />
       </main>
     </Layout>
   )
