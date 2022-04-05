@@ -1,8 +1,41 @@
-import { NextImage } from '@/elements/NextImage/NextImage'
+import axios from 'axios'
+import { useState } from 'react'
+
 import { Button } from '@/elements/Button/Button'
 import { Input } from '@/elements/Input/Input'
+import { NextImage } from '@/elements/NextImage/NextImage'
+
+import { PostSubscriptionResponse } from '@/types/response'
+import { Subscription } from '@/types/type'
 
 export const NewsLetterSection = () => {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState({ status: '' })
+
+  const handleInput = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handleSubscribe = async (): Promise<Subscription[]> => {
+    try {
+      const subscribe = await axios.post<PostSubscriptionResponse>(
+        'newsletter',
+        {
+          email: email,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      setEmail('')
+      setStatus(subscribe.data)
+    } catch (err) {
+      setStatus(err.response.data)
+    }
+  }
+
   return (
     <div className='bg-primary-100'>
       <div className='layout'>
@@ -24,11 +57,13 @@ export const NewsLetterSection = () => {
           </div>
           <div className='w-full text-center md:mt-5 md:w-2/5'>
             <Input type='text' placeholder='Your Name' className='mt-3' />
-            <Input type='email' placeholder='Email Address' className='mt-3' />
-            <Button variant='primary' className='mt-3 block w-full'>
+            <Input type='email' placeholder='Email Address' className='mt-3' value={email} onChange={handleInput} />
+            <Button variant='primary' className='mt-3 block w-full' onClick={() => handleSubscribe()}>
               Subscribe
             </Button>
             <small>We respect your privacy, free subscribe</small>
+            {status.status === 'success' && <p className='text-primary-500'>{status.message}</p>}
+            {status.status === 'error' && <p className='text-red-500'>{status.message}</p>}
           </div>
         </div>
       </div>
