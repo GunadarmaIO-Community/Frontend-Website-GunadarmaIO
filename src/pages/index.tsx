@@ -38,8 +38,8 @@ export default function IndexPage({ divisions, events }: Props) {
           <ArticleSection events={events} />
           <HistorySection />
         </div>
-        <Footer />
       </main>
+      <Footer />
     </Layout>
   )
 }
