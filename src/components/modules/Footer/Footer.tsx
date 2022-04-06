@@ -99,19 +99,19 @@ export const Footer = () => {
                 </div>
                 <div className='mt-5 grid grid-cols-3 gap-2'>
                   <NextImage
-                    className='relative h-[80px] w-full'
+                    className='relative h-[50px] w-full'
                     src='assets/icons/instagram-icon.svg'
                     layout='fill'
                     objectFit='contain'
                   />
                   <NextImage
-                    className='relative h-[80px] w-full'
+                    className='relative h-[50px] w-full'
                     src='assets/icons/medium-monogram-icon.svg'
                     layout='fill'
                     objectFit='contain'
                   />
                   <NextImage
-                    className='relative h-[80px] w-full'
+                    className='relative h-[50px] w-full'
                     src='assets/icons/youtube-icon.svg'
                     layout='fill'
                     objectFit='contain'
