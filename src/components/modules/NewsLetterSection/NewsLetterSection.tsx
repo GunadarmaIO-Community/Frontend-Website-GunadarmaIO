@@ -26,12 +26,9 @@ export const NewsLetterSection = () => {
   function isEmailValid() {
     const emailRegex =
       /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
-    if (emailRegex.test(email)) {
-      return true
-    } else {
-      setStatus({ status: 'error', message: 'Email tidak valid' })
-      return false
-    }
+    if (emailRegex.test(email)) return true
+    setStatus({ status: 'error', message: 'Email tidak valid' })
+    return false
   }
 
   const handleSubscribe = async (): Promise<Subscription[]> => {
