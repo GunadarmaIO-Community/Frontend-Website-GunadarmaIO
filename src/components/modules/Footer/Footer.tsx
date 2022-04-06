@@ -4,13 +4,13 @@ export const Footer = () => {
   return (
     <footer>
       <div className='bg-[url("/assets/images/adv-gunadarma.png")] bg-cover bg-center bg-no-repeat pt-44 md:bg-top'>
-        <div className='bg-secondary-500'>
+        <div className='bg-neutral-50 pb-5'>
           <div className='layout'>
             <div className='flex flex-col lg:flex-row'>
               <div className='lg:w-1/3 lg:pr-5'>
                 <div className='w-full'>
                   <NextImage
-                    className='relative h-[100px] w-full'
+                    className='relative h-[140px] w-[250px]'
                     src='assets/images/logo-text.png'
                     layout='fill'
                     objectFit='contain'
@@ -97,25 +97,31 @@ export const Footer = () => {
                     objectFit='contain'
                   />
                 </div>
-                <div className='mt-5 grid grid-cols-3 gap-2'>
-                  <NextImage
-                    className='relative h-[50px] w-full'
-                    src='assets/icons/instagram-icon.svg'
-                    layout='fill'
-                    objectFit='contain'
-                  />
-                  <NextImage
-                    className='relative h-[50px] w-full'
-                    src='assets/icons/medium-monogram-icon.svg'
-                    layout='fill'
-                    objectFit='contain'
-                  />
-                  <NextImage
-                    className='relative h-[50px] w-full'
-                    src='assets/icons/youtube-icon.svg'
-                    layout='fill'
-                    objectFit='contain'
-                  />
+                <div className='mt-5 flex justify-center'>
+                  <div className='mx-3 w-[50px]'>
+                    <NextImage
+                      className='relative h-[50px] w-full'
+                      src='assets/icons/instagram-icon.svg'
+                      layout='fill'
+                      objectFit='contain'
+                    />
+                  </div>
+                  <div className='mx-3 w-[50px]'>
+                    <NextImage
+                      className='relative h-[50px] w-full'
+                      src='assets/icons/medium-monogram-icon.svg'
+                      layout='fill'
+                      objectFit='contain'
+                    />
+                  </div>
+                  <div className='mx-3 w-[50px]'>
+                    <NextImage
+                      className='relative h-[50px] w-full'
+                      src='assets/icons/youtube-icon.svg'
+                      layout='fill'
+                      objectFit='contain'
+                    />
+                  </div>
                 </div>
               </div>
             </div>
