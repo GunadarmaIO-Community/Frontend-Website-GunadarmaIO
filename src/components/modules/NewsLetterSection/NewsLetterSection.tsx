@@ -10,29 +10,59 @@ import { Subscription } from '@/types/type'
 
 export const NewsLetterSection = () => {
   const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [status, setStatus] = useState({ status: '' })
 
-  const handleInput = (e) => {
+  const handleInputName = (e) => {
+    setName(e.target.value)
+    setStatus({ status: '' })
+  }
+
+  const handleInputEmail = (e) => {
     setEmail(e.target.value)
+    setStatus({ status: '' })
+  }
+
+  function isEmailValid() {
+    const emailRegex =
+      /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
+    if (emailRegex.test(email)) {
+      return true
+    } else {
+      setStatus({ status: 'error', message: 'Email tidak valid' })
+      return false
+    }
   }
 
   const handleSubscribe = async (): Promise<Subscription[]> => {
-    try {
-      const subscribe = await axios.post<PostSubscriptionResponse>(
-        'newsletter',
-        {
-          email: email,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
+    if (name && isEmailValid()) {
+      try {
+        const subscribe = await axios.post<PostSubscriptionResponse>(
+          'newsletter',
+          {
+            name: name,
+            email: email,
           },
-        }
-      )
-      setEmail('')
-      setStatus(subscribe.data)
-    } catch (err) {
-      setStatus(err.response.data)
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        setName('')
+        setEmail('')
+        setStatus(subscribe.data)
+      } catch (err) {
+        setStatus(err.response.data)
+      }
+    } else {
+      if (!name && !email) {
+        setStatus({ status: 'error', message: 'Nama dan Email tidak boleh kosong' })
+      } else if (!name) {
+        setStatus({ status: 'error', message: 'Nama tidak boleh kosong' })
+      } else if (!email) {
+        setStatus({ status: 'error', message: 'Email tidak boleh kosong' })
+      }
     }
   }
 
@@ -56,8 +86,14 @@ export const NewsLetterSection = () => {
             </p>
           </div>
           <div className='w-full text-center md:mt-5 md:w-2/5'>
-            <Input type='text' placeholder='Your Name' className='mt-3' />
-            <Input type='email' placeholder='Email Address' className='mt-3' value={email} onChange={handleInput} />
+            <Input type='text' placeholder='Your Name' className='mt-3' value={name} onChange={handleInputName} />
+            <Input
+              type='email'
+              placeholder='Email Address'
+              className='mt-3'
+              value={email}
+              onChange={handleInputEmail}
+            />
             <Button variant='primary' className='mt-3 block w-full' onClick={() => handleSubscribe()}>
               Subscribe
             </Button>
