@@ -5,6 +5,7 @@ import { Layout } from 'src/layouts/Main/Layout'
 import { Seo } from '@/elements/Seo/Seo'
 import { ArticleSection } from '@/modules/ArticleSection/ArticleSection'
 import { EventSection } from '@/modules/EventSection/EventSection'
+import { Footer } from '@/modules/Footer/Footer'
 import { HeroSection } from '@/modules/HeroSection/HeroSection'
 import { HistorySection } from '@/modules/HistorySection/HistorySection'
 import { IntroSection } from '@/modules/IntroSection/IntroSection'
@@ -40,6 +41,7 @@ export default function IndexPage({ divisions, events }: Props) {
         </div>
         <NewsLetterSection />
       </main>
+      <Footer />
     </Layout>
   )
 }
