@@ -51,3 +51,8 @@ export type Event = {
   updated_at: string
   deleted_at: string
 }
+
+export type Subscription = {
+  status: string
+  message: string
+}
