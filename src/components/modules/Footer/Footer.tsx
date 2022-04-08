@@ -2,7 +2,7 @@ import { NextImage } from '@/elements/NextImage/NextImage'
 
 export const Footer = () => {
   return (
-    <footer>
+    <footer id='contact'>
       <div className='bg-[url("/assets/images/adv-gunadarma.png")] bg-cover bg-center bg-no-repeat pt-44 md:bg-top'>
         <div className='bg-neutral-50 pb-5'>
           <div className='layout'>

@@ -68,7 +68,7 @@ export const OurDivision = ({ divisions, className }: Props) => {
   }
 
   return (
-    <div className={className}>
+    <div id='division' className={className}>
       <h1 className='text-center font-bold'>
         Our <span className='text-primary-500'>Division</span>
       </h1>

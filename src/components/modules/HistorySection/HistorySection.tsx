@@ -40,7 +40,7 @@ export const HistorySection = () => {
   }, [handleNextSlide])
 
   return (
-    <div className='flex flex-col items-center'>
+    <div id='achievements' className='flex flex-col items-center'>
       <h1 className='mt-28 text-center font-bold'>
         Make history with <span className='text-primary-500'>victory</span>
       </h1>
