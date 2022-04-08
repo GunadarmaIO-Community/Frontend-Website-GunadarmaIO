@@ -19,7 +19,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(({ children, classNam
       {...rest}
       ref={ref}
       className={clsxm(
-        'inline-flex items-center rounded px-4 py-2 font-semibold',
+        'inline-flex items-center rounded-xl px-4 py-2 font-semibold',
         'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
         'shadow-sm',
         'transition-colors duration-75',
@@ -31,7 +31,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(({ children, classNam
             'disabled:bg-primary-400 hover:disabled:bg-primary-400',
           ],
           variant === 'secondary' && [
-            'bg-secondary-500 text-primary-500 ',
+            'border-2 border-primary-500 bg-secondary-500 text-primary-500',
             'hover:bg-secondary-600',
             'active:bg-secondary-500',
             'disabled:bg-secondary-400  hover:disabled:bg-secondary-400',

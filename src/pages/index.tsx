@@ -9,6 +9,7 @@ import { Footer } from '@/modules/Footer/Footer'
 import { HeroSection } from '@/modules/HeroSection/HeroSection'
 import { HistorySection } from '@/modules/HistorySection/HistorySection'
 import { IntroSection } from '@/modules/IntroSection/IntroSection'
+import { Navbar } from '@/modules/Navbar/Navbar'
 import { OurDivision } from '@/modules/OurDivision/OurDivision'
 import { NewsLetterSection } from '@/modules/NewsLetterSection/NewsLetterSection'
 import { StatsSection } from '@/modules/StatsSection/StatsSection'
@@ -27,6 +28,7 @@ export default function IndexPage({ divisions, events }: Props) {
   return (
     <Layout>
       <Seo templateTitle='Index' />
+      <Navbar />
       <main>
         <div className='layout py-20'>
           <HeroSection />
