@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import { ReactNode } from 'react'
+
+import { UnstyledLink } from '@/elements/UnstyledLink/UnstyledLink'
 
 type Props = {
   children: ReactNode
@@ -10,7 +11,7 @@ type Props = {
 export const NavItem = ({ children, href, className }: Props) => {
   return (
     <li className={`${className} mt-8 text-secondary-500 lg:ml-10 lg:mt-0 lg:text-black xl:ml-16 xl:mt-0`}>
-      <Link href={href}>{children}</Link>
+      <UnstyledLink href={href}>{children}</UnstyledLink>
     </li>
   )
 }
