@@ -46,7 +46,7 @@ export const Footer = () => {
                 </p>
                 <p>iogunadarma.community@gmail.com</p>
               </div>
-              <div className='lg:w-1/3 lg:pl-5'>
+              <div className='lg:flex lg:w-1/3 lg:flex-col lg:justify-between lg:pl-5'>
                 <div className='mt-5 grid grid-cols-4 gap-2'>
                   <NextImage
                     className='relative h-[50px] w-full'
@@ -97,26 +97,26 @@ export const Footer = () => {
                     objectFit='contain'
                   />
                 </div>
-                <div className='mt-5 flex justify-center'>
-                  <div className='mx-3 w-[50px]'>
+                <div className='mt-5 flex justify-end'>
+                  <div className='ml-5 w-[40px]'>
                     <NextImage
-                      className='relative h-[50px] w-full'
+                      className='relative h-[40px] w-full'
                       src='assets/icons/instagram-icon.svg'
                       layout='fill'
                       objectFit='contain'
                     />
                   </div>
-                  <div className='mx-3 w-[50px]'>
+                  <div className='ml-5 w-[40px]'>
                     <NextImage
-                      className='relative h-[50px] w-full'
+                      className='relative h-[40px] w-full'
                       src='assets/icons/medium-monogram-icon.svg'
                       layout='fill'
                       objectFit='contain'
                     />
                   </div>
-                  <div className='mx-3 w-[50px]'>
+                  <div className='ml-5 w-[40px]'>
                     <NextImage
-                      className='relative h-[50px] w-full'
+                      className='relative h-[40px] w-full'
                       src='assets/icons/youtube-icon.svg'
                       layout='fill'
                       objectFit='contain'
