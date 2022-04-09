@@ -80,7 +80,7 @@ export const EventSection = ({ events }: Props) => {
   }, [isRight, handleNextSlide, handlePrevSlide])
 
   return (
-    <div className='mt-10 flex flex-col'>
+    <div id='events' className='mt-10 flex flex-col'>
       <div className='flex justify-center'>
         <div className='w-full xl:w-4/5'>
           <h1 className='text-center font-bold'>

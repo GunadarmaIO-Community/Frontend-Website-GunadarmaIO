@@ -10,7 +10,7 @@ type Props = {
 
 export const ArticleSection = ({ events }: Props) => {
   return (
-    <div className='mt-28 flex flex-col'>
+    <div id='article' className='mt-28 flex flex-col'>
       <h1 className='text-center font-bold'>
         Wanna boost your knowledge about <span className='text-primary-500'>algorithm</span> &{' '}
         <span className='text-primary-500'>data structure</span> ?

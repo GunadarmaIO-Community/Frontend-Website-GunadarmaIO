@@ -3,7 +3,7 @@ import { NextImage } from '@/elements/NextImage/NextImage'
 
 export const HeroSection = () => {
   return (
-    <div className='flex flex-col md:flex-row'>
+    <div id='about' className='flex flex-col md:flex-row'>
       <div className='w-full md:w-5/12'>
         <NextImage
           className='relative h-[350px] w-full'
