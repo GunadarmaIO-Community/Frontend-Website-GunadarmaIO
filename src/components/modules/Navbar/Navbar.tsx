@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import { Button } from '@/elements/Button/Button'
@@ -34,12 +35,16 @@ export const Navbar = () => {
     <nav className={`fixed z-40 w-full bg-[#fdfdfd] ${scrolled && 'drop-shadow-lg'}`}>
       <div className='layout flex items-center justify-between'>
         <div className='w-48'>
-          <NextImage
-            className='relative h-[70px] w-full'
-            src='/assets/images/logo-text.png'
-            layout='fill'
-            objectFit='contain'
-          />
+          <Link href='/'>
+            <a>
+              <NextImage
+                className='relative h-[70px] w-full'
+                src='/assets/images/logo-text.png'
+                layout='fill'
+                objectFit='contain'
+              />
+            </a>
+          </Link>
         </div>
         <HamburgerMenu onClick={() => setOpenDrawer(true)} />
         <ul
@@ -53,6 +58,7 @@ export const Navbar = () => {
           <NavItem href='/#events'>Events</NavItem>
           <NavItem href='/#article'>Articles</NavItem>
           <NavItem href='/#achievements'>Achievements</NavItem>
+          <NavItem href='/certificates'>Certificate</NavItem>
           <NavItem href='/#contact'>
             <Button variant='secondary'>Contact Us</Button>
           </NavItem>
