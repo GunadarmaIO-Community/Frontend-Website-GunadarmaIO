@@ -10,21 +10,24 @@ import { HeroSection } from '@/modules/HeroSection/HeroSection'
 import { HistorySection } from '@/modules/HistorySection/HistorySection'
 import { IntroSection } from '@/modules/IntroSection/IntroSection'
 import { Navbar } from '@/modules/Navbar/Navbar'
-import { OurDivision } from '@/modules/OurDivision/OurDivision'
 import { NewsLetterSection } from '@/modules/NewsLetterSection/NewsLetterSection'
+import { OurDivision } from '@/modules/OurDivision/OurDivision'
 import { StatsSection } from '@/modules/StatsSection/StatsSection'
 
 import { GetEventResponse } from '@/types/response'
 import { GetDivisionResponse } from '@/types/response'
+import { GetArticleResponse } from '@/types/response'
 import { Event } from '@/types/type'
 import { Division } from '@/types/type'
+import { Article } from '@/types/type'
 
 type Props = {
   divisions: Division[]
   events: Event[]
+  articles: Article[]
 }
 
-export default function IndexPage({ divisions, events }: Props) {
+export default function IndexPage({ divisions, events, articles }: Props) {
   return (
     <Layout>
       <Seo templateTitle='Index' />
@@ -38,7 +41,7 @@ export default function IndexPage({ divisions, events }: Props) {
           <IntroSection />
           <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
           <EventSection events={events} />
-          <ArticleSection events={events} />
+          <ArticleSection articles={articles} />
           <HistorySection />
         </div>
         <NewsLetterSection />
@@ -73,7 +76,19 @@ export async function getStaticProps() {
 
   const events = await getEvents()
 
+  const getArticles = async (): Promise<Article[]> => {
+    try {
+      const resArticles = await axios.get<GetArticleResponse>('artikel')
+      return resArticles.data.data
+    } catch (err) {
+      console.error(err)
+      return []
+    }
+  }
+
+  const articles = await getArticles()
+
   return {
-    props: { divisions, events },
+    props: { divisions, events, articles },
   }
 }
