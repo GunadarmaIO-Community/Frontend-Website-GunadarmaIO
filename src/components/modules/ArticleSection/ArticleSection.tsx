@@ -18,7 +18,7 @@ export const ArticleSection = ({ articles }: Props) => {
       <p className='mt-3 mb-6 text-center'>Here are several resource that you can learn with</p>
       <p className='text-right'>
         <Link href='/'>
-          <a className='font-bold text-primary-500 hover:opacity-75'>View All Events</a>
+          <a className='font-bold text-primary-500 hover:opacity-75'>View All Articles</a>
         </Link>
       </p>
       <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
@@ -35,7 +35,7 @@ export const ArticleSection = ({ articles }: Props) => {
                   />
                 </div>
                 <p className='font-bold text-primary-500'>{article.judul_artikel}</p>
-                <p>{article.detail_singkat}</p>
+                <p className='line-clamp-4'>{article.detail_singkat}</p>
               </div>
             </a>
           </Link>
