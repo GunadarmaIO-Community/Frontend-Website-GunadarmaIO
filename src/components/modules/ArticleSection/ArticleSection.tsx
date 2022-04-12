@@ -2,13 +2,13 @@ import Link from 'next/link'
 
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-import { Event } from '@/types/type'
+import { Article } from '@/types/type'
 
 type Props = {
-  events: Event[]
+  articles: Article[]
 }
 
-export const ArticleSection = ({ events }: Props) => {
+export const ArticleSection = ({ articles }: Props) => {
   return (
     <div id='article' className='mt-28 flex flex-col'>
       <h1 className='text-center font-bold'>
@@ -18,24 +18,24 @@ export const ArticleSection = ({ events }: Props) => {
       <p className='mt-3 mb-6 text-center'>Here are several resource that you can learn with</p>
       <p className='text-right'>
         <Link href='/'>
-          <a className='font-bold text-primary-500 hover:opacity-75'>View All Events</a>
+          <a className='font-bold text-primary-500 hover:opacity-75'>View All Articles</a>
         </Link>
       </p>
       <div className='grid grid-cols-2 gap-4 md:grid-cols-3'>
-        {events.map((event, index) => (
-          <Link href={`event/${event.slug}`} key={index}>
+        {articles.map((article, index) => (
+          <Link href={`article/${article.slug}`} key={index}>
             <a>
               <div className='rounded hover:opacity-75'>
                 <div className='w-full'>
                   <NextImage
                     className='relative h-[130px] w-full md:h-[200px]'
-                    src={event.gambar}
+                    src={article.gambar}
                     layout='fill'
                     objectFit='contain'
                   />
                 </div>
-                <p className='font-bold text-primary-500'>{event.judul_event}</p>
-                <p>{event.detail_singkat}</p>
+                <p className='font-bold text-primary-500'>{article.judul_artikel}</p>
+                <p className='line-clamp-4'>{article.detail_singkat}</p>
               </div>
             </a>
           </Link>

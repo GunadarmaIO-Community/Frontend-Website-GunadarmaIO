@@ -1,4 +1,4 @@
-import { Certificate, Division, Event, Subscription } from './type'
+import { Certificate, Division, Event, Article, Subscription } from './type'
 
 export type DefaultResponse = {
   success: boolean
@@ -15,6 +15,10 @@ export interface GetDivisionResponse extends DefaultResponse {
 
 export interface GetEventResponse extends DefaultResponse {
   data: Event[]
+}
+
+export interface GetArticleResponse extends DefaultResponse {
+  data: Article[]
 }
 
 export interface PostSubscriptionResponse extends DefaultResponse {

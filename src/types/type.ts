@@ -52,6 +52,22 @@ export type Event = {
   deleted_at: string
 }
 
+export type Article = {
+  id: string
+  judul_artikel: string
+  slug: string
+  gambar: string
+  detail_artikel: string
+  detail_singkat: string
+  kategori_id: number
+  publish: string
+  tanggal_publish: string
+  status: number
+  created_at: string
+  updated_at: string
+  deleted_at: string
+}
+
 export type Subscription = {
   status: string
   message: string
