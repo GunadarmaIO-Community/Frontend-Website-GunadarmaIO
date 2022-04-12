@@ -38,46 +38,24 @@ type Props = {
 
 export const EventSection = ({ events }: Props) => {
   const [active, setActive] = useState(0)
-  const [activeStyle, setActiveStyle] = useState('block')
   const [btnActive, setBtnActive] = useState(true)
   const [isRight, setIsRight] = useState(true)
 
-  const handlePrevSlide = useCallback(() => {
+  const handleSlide = useCallback((i) => {
     if (btnActive) {
-      setIsRight(false)
       setBtnActive(false)
-      setActiveStyle('translate-x-[2000px]')
+      setIsRight(i < 0 ? false : true)
+      setActive(active + i < 0 ? events.length - 1 : (active + i) % events.length)
       setTimeout(() => {
-        setActive(active ? active - 1 : events.length - 1)
-        setActiveStyle('block translate-x-[-2000px]')
-      }, 300)
-      setTimeout(() => {
-        setActiveStyle('block')
         setBtnActive(true)
-      }, 400)
-    }
-  }, [active, events.length, btnActive])
-
-  const handleNextSlide = useCallback(() => {
-    if (btnActive) {
-      setIsRight(true)
-      setBtnActive(false)
-      setActiveStyle('translate-x-[-2000px]')
-      setTimeout(() => {
-        setActive((active + 1) % events.length)
-        setActiveStyle('block translate-x-[2000px]')
-      }, 300)
-      setTimeout(() => {
-        setActiveStyle('block')
-        setBtnActive(true)
-      }, 400)
+      }, 500)
     }
   }, [active, events.length, btnActive])
 
   useEffect(() => {
-    const timer = setInterval(() => (isRight ? handleNextSlide() : handlePrevSlide()), 3000)
+    const timer = setInterval(() => (isRight ? handleSlide(1) : handleSlide(-1)), 3000)
     return () => clearTimeout(timer)
-  }, [isRight, handleNextSlide, handlePrevSlide])
+  }, [isRight, handleSlide])
 
   return (
     <div id='events' className='mt-10 flex flex-col'>
@@ -99,20 +77,22 @@ export const EventSection = ({ events }: Props) => {
         </Link>
       </div>
       <div className='mt-5 rounded-[24px] bg-gradient-to-b from-primary-500 to-primary-700'>
-        <div className='relative m-5 overflow-hidden'>
+        <div className='relative m-5 h-[420px] lg:h-[360px] overflow-hidden justify-center'>
           {events.map((event, index) => (
             <Slide
               key={index}
               event={event}
-              className={`relative float-left w-full transition duration-500 ease-in-out ${
-                index == active ? activeStyle : 'hidden'
+              className={`absolute w-full h-full transition duration-1000 ease-in-out ${
+                index == active ? 'block' : index == (active + 1) % events.length
+                ? 'translate-x-full opacity-0'
+                : '-translate-x-full opacity-0'
               }`}
             />
           ))}
           <div className='absolute right-0 bottom-0'>
             <button
               className='mr-12 rounded-full bg-secondary-500 p-3 hover:opacity-75'
-              onClick={() => handlePrevSlide()}
+              onClick={() => handleSlide(-1)}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -124,7 +104,7 @@ export const EventSection = ({ events }: Props) => {
                 <path strokeLinecap='round' strokeLinejoin='round' d='M10 19l-7-7m0 0l7-7m-7 7h18' />
               </svg>
             </button>
-            <button className='rounded-full bg-secondary-500 p-3 hover:opacity-75' onClick={() => handleNextSlide()}>
+            <button className='rounded-full bg-secondary-500 p-3 hover:opacity-75' onClick={() => handleSlide(1)}>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6 stroke-primary-700'
