@@ -45,11 +45,9 @@ export const StatsSection = () => {
             key={index}
             className={`absolute flex h-full w-full justify-center p-3 transition duration-500 ease-in-out md:relative md:w-1/3 md:px-8 md:py-10 ${
               isMobile &&
-              (index == active
-                ? 'block'
-                : index == (active + 1) % STATS.length
-                ? 'translate-x-full opacity-0'
-                : '-translate-x-full opacity-0')
+              (index == active && 'block' ||
+              index == (active + 1) % STATS.length && 'translate-x-full opacity-0' ||
+              '-translate-x-full opacity-0')
             }`}
           >
             <img src={stats.icon} className='w-[50px] md:w-[70px]' alt='multicultural-people-icon' />
