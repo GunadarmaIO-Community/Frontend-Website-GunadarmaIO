@@ -64,7 +64,7 @@ export const NewsLetterSection = () => {
   }
 
   return (
-    <div className='bg-primary-100'>
+    <section className='bg-primary-100'>
       <div className='layout'>
         <div className='flex flex-col py-10 md:flex-row md:py-20'>
           <div className='w-full md:w-3/5 md:pr-5'>
@@ -100,6 +100,6 @@ export const NewsLetterSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
