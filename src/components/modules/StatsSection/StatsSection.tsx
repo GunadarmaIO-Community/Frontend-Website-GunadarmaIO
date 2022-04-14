@@ -13,16 +13,19 @@ export const StatsSection = () => {
     { name: 'Official Partnership', count: 15, icon: '/assets/icons/handshake-icon.svg' },
   ]
 
-  const handleSlide = useCallback((i) => {
-    if (btnActive) {
-      setBtnActive(false)
-      setIsRight(i < 0 ? false : true)
-      setActive(active + i < 0 ? STATS.length - 1 : (active + i) % STATS.length)
-      setTimeout(() => {
-        setBtnActive(true)
-      }, 500)
-    }
-  }, [active, STATS.length, btnActive])
+  const handleSlide = useCallback(
+    (i) => {
+      if (btnActive) {
+        setBtnActive(false)
+        setIsRight(i < 0 ? false : true)
+        setActive(active + i < 0 ? STATS.length - 1 : (active + i) % STATS.length)
+        setTimeout(() => {
+          setBtnActive(true)
+        }, 500)
+      }
+    },
+    [active, STATS.length, btnActive]
+  )
 
   useEffect(() => {
     const timer = setInterval(() => (isRight ? handleSlide(1) : handleSlide(-1)), 3000)
@@ -30,8 +33,8 @@ export const StatsSection = () => {
   }, [isRight, handleSlide])
 
   return (
-    <div
-      className='relative flex flex-col overflow-hidden bg-primary-500 md:flex-row'
+    <section
+      className='relative flex flex-col overflow-hidden bg-primary-500 sm:flex-row'
       style={{
         backgroundImage: 'url(/assets/images/bubble-bg-top.png), url(/assets/images/bubble-bg-bottom.png)',
         backgroundPosition: 'top center, bottom center',
@@ -39,23 +42,23 @@ export const StatsSection = () => {
         backgroundSize: '100%',
       }}
     >
-      <div className='layout flex h-[100px] flex-row md:h-full'>
+      <div className='layout flex h-[130px] flex-row sm:h-full'>
         {STATS.map((stats, index) => (
           <div
             key={index}
-            className={`absolute flex h-full w-full justify-center p-3 transition duration-500 ease-in-out md:relative md:w-1/3 md:px-8 md:py-10 ${
+            className={`absolute flex h-full w-full justify-center transition duration-500 ease-in-out sm:relative sm:w-1/3 sm:px-8 sm:py-16 xl:py-24 ${
               isMobile &&
-              (index == active && 'block' ||
-              index == (active + 1) % STATS.length && 'translate-x-full opacity-0' ||
-              '-translate-x-full opacity-0')
+              ((index == active && 'block') ||
+                (index == (active + 1) % STATS.length && 'translate-x-full opacity-0') ||
+                '-translate-x-full opacity-0')
             }`}
           >
-            <img src={stats.icon} className='w-[50px] md:w-[70px]' alt='multicultural-people-icon' />
+            <img src={stats.icon} className='w-[70px] lg:w-[100px]' alt={stats.name} />
             <div className='ml-2 self-center'>
-              <p className='text-3xl font-bold text-[#54C659]'>
+              <p className='text-4xl font-bold text-[#54C659]'>
                 {stats.count >= 100 ? stats.count + '+' : stats.count}
               </p>
-              <p className='text-secondary-500 md:mt-1'>{stats.name}</p>
+              <p className='text-secondary-500 sm:mt-1'>{stats.name}</p>
             </div>
           </div>
         ))}
@@ -92,6 +95,6 @@ export const StatsSection = () => {
           </>
         )}
       </div>
-    </div>
+    </section>
   )
 }
