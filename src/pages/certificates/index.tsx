@@ -11,6 +11,7 @@ import { SearchField } from '@/elements/SearchField/SearchField'
 import { Seo } from '@/elements/Seo/Seo'
 import { Spinner } from '@/elements/Spinner/Spinner'
 import { UnstyledLink } from '@/elements/UnstyledLink/UnstyledLink'
+import { Navbar } from '@/modules/Navbar/Navbar'
 
 import { GetCertificateResponse } from '@/types/response'
 import { Certificate } from '@/types/type'
@@ -38,9 +39,7 @@ export default function CertificatesIndexPage() {
     const fetchCertificate = async () => {
       try {
         setIsLoading(true)
-        const res = await axios.get<GetCertificateResponse>(
-          `/certificate/${input}`
-        )
+        const res = await axios.get<GetCertificateResponse>(`/certificate/${input}`)
         setCertificateData(res.data.data[0])
         generateBlobUrl(res.data.data[0].id)
       } catch (e) {
@@ -56,42 +55,26 @@ export default function CertificatesIndexPage() {
     <Layout>
       <Seo templateTitle='Certificate' />
 
+      <Navbar />
       <main>
         <section className=''>
-          <div
-            className='layout flex min-h-screen flex-col 
-            items-center py-20'
-          >
+          <div className='layout flex min-h-screen flex-col items-center justify-center py-20'>
             <NextImage
-              className='relative h-[100px] w-full sm:h-[200px]'
+              className='relative h-[100px] w-full sm:h-[150px] sm:w-3/5'
               src='/assets/images/logo-text.png'
               layout='fill'
               objectFit='contain'
               alt='Gunadarma I/O Logo'
             />
             <h3 className='mb-8'>Validate certificates from us</h3>
-            <SearchField
-              input={input}
-              onChange={(e) => setInput(e.target.value)}
-            />
+            <SearchField input={input} onChange={(e) => setInput(e.target.value)} />
             <Document
               className='mt-6 mb-4 sm:mt-11'
-              file={
-                certificate?.file &&
-                `data:application/pdf;base64,${certificate?.file}`
-              }
+              file={certificate?.file && `data:application/pdf;base64,${certificate?.file}`}
               onLoadError={(e) => {
                 console.error(e)
               }}
-              noData={
-                !input.length ? (
-                  ''
-                ) : isLoading ? (
-                  <Spinner />
-                ) : (
-                  'Certificate not found'
-                )
-              }
+              noData={!input.length ? '' : isLoading ? <Spinner /> : 'Certificate not found'}
               error='Sorry, something went wrong'
               loading={<Spinner />}
             >
