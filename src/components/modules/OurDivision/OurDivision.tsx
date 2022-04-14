@@ -7,10 +7,9 @@ import { Division } from '@/types/type'
 
 type Props = {
   divisions: Division[]
-  className?: string
 }
 
-export const OurDivision = ({ divisions, className }: Props) => {
+export const OurDivision = ({ divisions }: Props) => {
   const [selectedDivision, setSelectedDivision] = useState('mentor')
   const [selectedTab, setSelectedTab] = useState<'job-desc' | 'core-team'>('job-desc')
   const isMobile = useMediaQuery('(max-width: 640px)')
@@ -50,7 +49,7 @@ export const OurDivision = ({ divisions, className }: Props) => {
     const currentDivision = divisions.find((division) => division.slug === selectedDivision)
 
     if (selectedTab === 'job-desc' && currentDivision) {
-      return <p>{currentDivision.deskripsi}</p>
+      return <p className='text-center sm:text-left'>{currentDivision.deskripsi}</p>
     }
     if (selectedTab === 'core-team' && currentDivision) {
       return (
@@ -68,7 +67,7 @@ export const OurDivision = ({ divisions, className }: Props) => {
   }
 
   return (
-    <div id='division' className={className}>
+    <section id='division' className='mt-20'>
       <h1 className='text-center font-bold'>
         Our <span className='text-primary-500'>Division</span>
       </h1>
@@ -82,7 +81,7 @@ export const OurDivision = ({ divisions, className }: Props) => {
             id='division'
             value={selectedDivision}
             onChange={(e) => setSelectedDivision(e.target.value)}
-            className='mb-6 rounded bg-gray-200 py-2 focus:outline-primary-500'
+            className='mb-6 rounded bg-gray-200 p-2 focus:outline-primary-500'
           >
             {createDivisionOptionsViews()}
           </select>
@@ -110,6 +109,6 @@ export const OurDivision = ({ divisions, className }: Props) => {
           <div className='mt-4 flex'>{createDivisionContent()}</div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

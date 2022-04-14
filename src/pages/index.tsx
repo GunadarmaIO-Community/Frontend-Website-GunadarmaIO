@@ -39,7 +39,7 @@ export default function IndexPage({ divisions, events, articles }: Props) {
         <StatsSection />
         <div className='layout min-h-screen py-20'>
           <IntroSection />
-          <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
+          <OurDivision divisions={divisions} />
           <EventSection events={events} />
           <ArticleSection articles={articles} />
           <HistorySection />
