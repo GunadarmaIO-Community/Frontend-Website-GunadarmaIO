@@ -3,11 +3,11 @@ import * as React from 'react'
 import { Layout } from 'src/layouts/Main/Layout'
 
 import { Seo } from '@/elements/Seo/Seo'
+import { AchievementSection } from '@/modules/AchievementSection/AchievementSection'
 import { ArticleSection } from '@/modules/ArticleSection/ArticleSection'
 import { EventSection } from '@/modules/EventSection/EventSection'
 import { Footer } from '@/modules/Footer/Footer'
 import { HeroSection } from '@/modules/HeroSection/HeroSection'
-import { HistorySection } from '@/modules/HistorySection/HistorySection'
 import { IntroSection } from '@/modules/IntroSection/IntroSection'
 import { Navbar } from '@/modules/Navbar/Navbar'
 import { NewsLetterSection } from '@/modules/NewsLetterSection/NewsLetterSection'
@@ -42,7 +42,7 @@ export default function IndexPage({ divisions, events, articles }: Props) {
           <OurDivision divisions={divisions} />
           <EventSection events={events} />
           <ArticleSection articles={articles} />
-          <HistorySection />
+          <AchievementSection />
         </div>
         <NewsLetterSection />
       </main>

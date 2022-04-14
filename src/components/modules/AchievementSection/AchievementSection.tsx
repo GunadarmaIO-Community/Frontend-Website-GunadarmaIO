@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const HistorySection = () => {
+export const AchievementSection = () => {
   const [active, setActive] = useState(0)
   const [btnActive, setBtnActive] = useState(true)
 
