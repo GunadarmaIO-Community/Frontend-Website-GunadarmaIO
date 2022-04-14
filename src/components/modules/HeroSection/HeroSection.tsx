@@ -3,17 +3,12 @@ import { NextImage } from '@/elements/NextImage/NextImage'
 
 export const HeroSection = () => {
   return (
-    <div id='about' className='flex flex-col md:flex-row'>
-      <div className='w-full md:w-5/12'>
-        <NextImage
-          className='relative h-[350px] w-full'
-          src='/assets/images/banner.png'
-          layout='fill'
-          objectFit='contain'
-        />
+    <section id='about' className='flex flex-col sm:mt-5 sm:flex-row'>
+      <div className='sm:w-5/12'>
+        <NextImage width='568px' height='697px' src='/assets/images/banner.png' layout='responsive' />
       </div>
-      <div className='mt-3 flex w-full md:ml-3 md:w-7/12'>
-        <div className='self-center'>
+      <div className='mt-8 flex sm:mt-0 sm:w-7/12 sm:pl-5'>
+        <div className='self-center text-center sm:text-left'>
           <h1 className='font-bold'>
             Hello <span className='text-primary-500'>Fellas!</span>
           </h1>
@@ -29,6 +24,6 @@ export const HeroSection = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
