@@ -67,8 +67,3 @@ export type Article = {
   updated_at: string
   deleted_at: string
 }
-
-export type Subscription = {
-  status: string
-  message: string
-}

@@ -13,7 +13,7 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const closeDrawer = (event) => {
+    const closeDrawer = (event: any) => {
       if (drawerRef.current && drawerRef.current.contains(event.target)) {
         return
       }
