@@ -40,7 +40,7 @@ export const NewsLetterSection = () => {
       )
       setName('')
       setEmail('')
-      return resSubscribe
+      return resSubscribe.data
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const error = err as AxiosError
