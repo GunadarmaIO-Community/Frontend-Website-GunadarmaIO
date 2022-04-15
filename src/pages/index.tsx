@@ -30,7 +30,7 @@ type Props = {
 export default function IndexPage({ divisions, events, articles }: Props) {
   return (
     <Layout>
-      <Seo templateTitle='Index' />
+      <Seo/>
       <Navbar />
       <main>
         <div className='layout py-20'>

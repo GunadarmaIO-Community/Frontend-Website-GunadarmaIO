@@ -5,10 +5,10 @@ import { openGraph } from '@/lib/helper'
 
 // !STARTERCONF Change these default meta
 const defaultMeta = {
-  title: 'Gunadarma I/o',
-  siteName: 'Gunadarma I/o',
+  title: 'Gunadarma I/O',
+  siteName: 'Gunadarma I/O',
   description:
-    'Gunadarma IO is an advance programming community in Gunadarma University were compose an insight related on Competitive Programming fields',
+    'Gunadarma I/O is an advance programming community in Gunadarma University were compose an insight related on Competitive Programming fields',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
   url: 'https://tsnext-tw.thcl.dev',
   type: 'website',
