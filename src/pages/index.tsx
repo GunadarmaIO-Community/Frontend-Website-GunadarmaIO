@@ -42,8 +42,8 @@ export default function IndexPage({ divisions, events, articles }: Props) {
           <OurDivision className='mt-20 md:mt-32' divisions={divisions} />
           <EventSection className='mt-20 md:mt-32' events={events} />
           <ArticleSection className='mt-20 md:mt-32' articles={articles} />
-          <AchievementSection className='mt-20 md:mt-32' />
         </div>
+        <AchievementSection className='mb-20 md:mb-32 md:mt-12' />
         <NewsLetterSection className='' />
       </main>
       <Footer className='py-10' />

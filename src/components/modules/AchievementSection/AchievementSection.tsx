@@ -45,19 +45,21 @@ export const AchievementSection = ({ className }: Props) => {
 
   return (
     <section id='achievements' className={`${className}`}>
-      <h1 className='text-center font-bold'>
-        Make history with <span className='text-primary-500'>victory</span>
-      </h1>
-      <p className='mt-5 text-center'>
-        Over the years, our members have conquered many IT competitions across the nation. They’ve become our pride who
-        will continue to astonish us!
-      </p>
+      <div className='layout'>
+        <h1 className='text-center font-bold'>
+          Make history with <span className='text-primary-500'>victory</span>
+        </h1>
+        <p className='mt-5 text-center'>
+          Over the years, our members have conquered many IT competitions across the nation. They’ve become our pride
+          who will continue to astonish us!
+        </p>
+      </div>
       <div className='relative mt-5 flex h-[350px] w-full justify-center overflow-hidden'>
         {COMPETITIONS.map((competition, index) => (
           <div
             key={index}
             className={`absolute flex h-[300px] w-[300px] rounded-[20px] bg-white transition duration-500 ease-in-out ${
-              (index == active && 'z-10 bg-gray-100') ||
+              (index == active && 'z-10 bg-gray-200') ||
               (index == (active + 1) % 3 && 'translate-x-[200px] translate-y-[50px]') ||
               'translate-x-[-200px] translate-y-[50px]'
             }`}
