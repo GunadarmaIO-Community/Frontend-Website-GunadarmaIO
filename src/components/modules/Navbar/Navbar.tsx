@@ -7,7 +7,11 @@ import { NextImage } from '@/elements/NextImage/NextImage'
 import { HamburgerMenu } from './HamburgerMenu'
 import { NavItem } from './NavItem'
 
-export const Navbar = () => {
+type Props = {
+  className?: string
+}
+
+export const Navbar = ({ className }: Props) => {
   const [openDrawer, setOpenDrawer] = useState(false)
   const drawerRef = useRef<HTMLUListElement>(null)
   const [scrolled, setScrolled] = useState(false)
@@ -32,7 +36,7 @@ export const Navbar = () => {
   }, [])
 
   return (
-    <nav className={`fixed z-40 w-full bg-[#fdfdfd] ${scrolled && 'drop-shadow-lg'}`}>
+    <nav className={`fixed z-40 w-full bg-[#fdfdfd] ${className} ${scrolled && 'drop-shadow-lg'}`}>
       <div className='layout flex items-center justify-between'>
         <div className='w-48'>
           <Link href='/'>

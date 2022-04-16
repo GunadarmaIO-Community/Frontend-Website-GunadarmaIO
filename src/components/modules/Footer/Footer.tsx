@@ -1,10 +1,14 @@
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const Footer = () => {
+type Props = {
+  className?: string
+}
+
+export const Footer = ({ className }: Props) => {
   return (
     <footer id='contact'>
       <div className='bg-[url("/assets/images/adv-gunadarma.png")] bg-cover bg-center bg-no-repeat pt-44 md:bg-top'>
-        <div className='bg-neutral-50 py-10'>
+        <div className={`bg-neutral-50 ${className}`}>
           <div className='layout'>
             <div className='flex flex-col lg:flex-row lg:gap-5'>
               <div className='text-center lg:w-1/3 lg:text-left'>

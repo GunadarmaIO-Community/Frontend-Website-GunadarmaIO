@@ -7,9 +7,10 @@ import { Event } from '@/types/type'
 
 type Props = {
   events: Event[]
+  className?: string
 }
 
-export const EventSection = ({ events }: Props) => {
+export const EventSection = ({ events, className }: Props) => {
   const [active, setActive] = useState(0)
   const [btnActive, setBtnActive] = useState(true)
   const [isRight, setIsRight] = useState(true)
@@ -34,7 +35,7 @@ export const EventSection = ({ events }: Props) => {
   }, [isRight, handleSlide])
 
   return (
-    <section id='events' className='mt-20'>
+    <section id='events' className={`${className}`}>
       <h1 className='text-center font-bold'>
         Get to know our <span className='text-primary-500'>events</span> and{' '}
         <span className='text-primary-500'>participate</span> in it

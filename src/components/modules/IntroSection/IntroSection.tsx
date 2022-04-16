@@ -1,8 +1,12 @@
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const IntroSection = () => {
+type Props = {
+  className?: string
+}
+
+export const IntroSection = ({ className }: Props) => {
   return (
-    <section id='intro'>
+    <section id='intro' className={`${className}`}>
       <h1 className='text-center font-bold'>
         Intro To <span className='text-primary-500'> Gunadarma I/O</span>
       </h1>

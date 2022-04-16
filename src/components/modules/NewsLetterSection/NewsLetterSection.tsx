@@ -1,5 +1,4 @@
 import axios, { AxiosError } from 'axios'
-
 import { useState } from 'react'
 
 import { Button } from '@/elements/Button/Button'
@@ -8,7 +7,11 @@ import { NextImage } from '@/elements/NextImage/NextImage'
 
 import { PostSubscriptionResponse } from '@/types/response'
 
-export const NewsLetterSection = () => {
+type Props = {
+  className?: string
+}
+
+export const NewsLetterSection = ({ className }: Props) => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [status, setStatus] = useState({ status: '', message: '' })
@@ -35,8 +38,8 @@ export const NewsLetterSection = () => {
     try {
       const resSubscribe = await axios.post<PostSubscriptionResponse>(
         'newsletter',
-        { name: name, email: email, },
-        { headers: { 'Content-Type': 'application/json', },}
+        { name: name, email: email },
+        { headers: { 'Content-Type': 'application/json' } }
       )
       setName('')
       setEmail('')
@@ -48,7 +51,7 @@ export const NewsLetterSection = () => {
           return error.response.data
         }
       }
-      return {status: 'error', message: 'error'}
+      return { status: 'error', message: 'error' }
     }
   }
 
@@ -68,7 +71,7 @@ export const NewsLetterSection = () => {
   }
 
   return (
-    <section className='bg-primary-100'>
+    <section className={`bg-primary-100 ${className}`}>
       <div className='layout'>
         <div className='flex flex-col py-10 md:flex-row md:py-20'>
           <div className='w-full md:w-3/5 md:pr-5'>

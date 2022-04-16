@@ -7,9 +7,10 @@ import { Division } from '@/types/type'
 
 type Props = {
   divisions: Division[]
+  className?: string
 }
 
-export const OurDivision = ({ divisions }: Props) => {
+export const OurDivision = ({ divisions, className }: Props) => {
   const [selectedDivision, setSelectedDivision] = useState('mentor')
   const [selectedTab, setSelectedTab] = useState<'job-desc' | 'core-team'>('job-desc')
   const isMobile = useMediaQuery('(max-width: 640px)')
@@ -67,7 +68,7 @@ export const OurDivision = ({ divisions }: Props) => {
   }
 
   return (
-    <section id='division' className='mt-20'>
+    <section id='division' className={`${className}`}>
       <h1 className='text-center font-bold'>
         Our <span className='text-primary-500'>Division</span>
       </h1>

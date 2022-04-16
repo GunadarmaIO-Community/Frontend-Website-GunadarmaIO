@@ -1,9 +1,13 @@
 import { Button } from '@/elements/Button/Button'
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const HeroSection = () => {
+type Props = {
+  className?: string
+}
+
+export const HeroSection = ({ className }: Props) => {
   return (
-    <section id='about' className='flex flex-col sm:mt-5 sm:flex-row'>
+    <section id='about' className={`flex flex-col sm:flex-row ${className}`}>
       <div className='sm:w-5/12'>
         <NextImage width='568px' height='697px' src='/assets/images/banner.png' layout='responsive' />
       </div>

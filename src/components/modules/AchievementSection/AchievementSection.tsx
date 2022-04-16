@@ -2,7 +2,11 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const AchievementSection = () => {
+type Props = {
+  className?: string
+}
+
+export const AchievementSection = ({ className }: Props) => {
   const [active, setActive] = useState(0)
   const [btnActive, setBtnActive] = useState(true)
 
@@ -40,7 +44,7 @@ export const AchievementSection = () => {
   }, [handleNextSlide])
 
   return (
-    <section id='achievements' className='mt-20'>
+    <section id='achievements' className={`${className}`}>
       <h1 className='text-center font-bold'>
         Make history with <span className='text-primary-500'>victory</span>
       </h1>

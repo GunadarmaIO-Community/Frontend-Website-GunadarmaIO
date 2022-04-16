@@ -6,11 +6,12 @@ import { Article } from '@/types/type'
 
 type Props = {
   articles: Article[]
+  className?: string
 }
 
-export const ArticleSection = ({ articles }: Props) => {
+export const ArticleSection = ({ articles, className }: Props) => {
   return (
-    <section id='article' className='mt-20'>
+    <section id='article' className={`${className}`}>
       <h1 className='text-center font-bold'>
         Wanna boost your knowledge about <span className='text-primary-500'>algorithm</span> &{' '}
         <span className='text-primary-500'>data structure</span> ?

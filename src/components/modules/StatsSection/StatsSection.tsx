@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useMediaQuery } from 'src/hooks/useMediaQuery'
 
-export const StatsSection = () => {
+type Props = {
+  className?: string
+}
+
+export const StatsSection = ({ className }: Props) => {
   const isMobile = useMediaQuery('(max-width: 640px)')
   const [active, setActive] = useState(0)
   const [btnActive, setBtnActive] = useState(true)
@@ -34,7 +38,7 @@ export const StatsSection = () => {
 
   return (
     <section
-      className='relative flex flex-col overflow-hidden bg-primary-500 sm:flex-row'
+      className={`relative flex flex-col overflow-hidden bg-primary-500 sm:flex-row ${className}`}
       style={{
         backgroundImage: 'url(/assets/images/bubble-bg-top.png), url(/assets/images/bubble-bg-bottom.png)',
         backgroundPosition: 'top center, bottom center',

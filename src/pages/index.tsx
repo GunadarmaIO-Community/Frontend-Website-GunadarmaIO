@@ -30,23 +30,23 @@ type Props = {
 export default function IndexPage({ divisions, events, articles }: Props) {
   return (
     <Layout>
-      <Seo/>
-      <Navbar />
+      <Seo />
+      <Navbar className='' />
       <main>
         <div className='layout py-20'>
-          <HeroSection />
+          <HeroSection className='sm:mt-5' />
         </div>
-        <StatsSection />
+        <StatsSection className='my-0 md:my-12' />
         <div className='layout min-h-screen py-20'>
-          <IntroSection />
-          <OurDivision divisions={divisions} />
-          <EventSection events={events} />
-          <ArticleSection articles={articles} />
-          <AchievementSection />
+          <IntroSection className='' />
+          <OurDivision className='mt-20 md:mt-32' divisions={divisions} />
+          <EventSection className='mt-20 md:mt-32' events={events} />
+          <ArticleSection className='mt-20 md:mt-32' articles={articles} />
+          <AchievementSection className='mt-20 md:mt-32' />
         </div>
-        <NewsLetterSection />
+        <NewsLetterSection className='' />
       </main>
-      <Footer />
+      <Footer className='py-10' />
     </Layout>
   )
 }
