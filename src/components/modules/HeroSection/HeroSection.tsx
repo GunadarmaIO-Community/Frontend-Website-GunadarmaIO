@@ -8,10 +8,10 @@ type Props = {
 export const HeroSection = ({ className }: Props) => {
   return (
     <section id='about' className={`flex flex-col sm:flex-row ${className}`}>
-      <div className='sm:w-5/12'>
+      <div className='sm:w-1/3'>
         <NextImage width='568px' height='697px' src='/assets/images/banner.png' layout='responsive' />
       </div>
-      <div className='mt-8 flex sm:mt-0 sm:w-7/12 sm:pl-5'>
+      <div className='mt-8 flex sm:mt-0 sm:w-2/3 sm:pl-12'>
         <div className='self-center text-center sm:text-left'>
           <h1 className='font-bold'>
             Hello <span className='text-primary-500'>Fellas!</span>

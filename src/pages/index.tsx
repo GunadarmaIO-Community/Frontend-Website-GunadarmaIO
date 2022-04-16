@@ -34,7 +34,7 @@ export default function IndexPage({ divisions, events, articles }: Props) {
       <Navbar className='' />
       <main>
         <div className='layout py-20'>
-          <HeroSection className='sm:mt-5' />
+          <HeroSection className='sm:mt-20' />
         </div>
         <StatsSection className='my-0 md:my-12' />
         <div className='layout min-h-screen py-20'>
