@@ -2,7 +2,11 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const HistorySection = () => {
+type Props = {
+  className?: string
+}
+
+export const AchievementSection = ({ className }: Props) => {
   const [active, setActive] = useState(0)
   const [btnActive, setBtnActive] = useState(true)
 
@@ -40,24 +44,24 @@ export const HistorySection = () => {
   }, [handleNextSlide])
 
   return (
-    <div id='achievements' className='flex flex-col items-center'>
-      <h1 className='mt-28 text-center font-bold'>
-        Make history with <span className='text-primary-500'>victory</span>
-      </h1>
-      <p className='mt-5 text-center md:w-2/3'>
-        Over the years, our members have conquered many IT competitions across the nation. They’ve become our pride who
-        will continue to astonish us!
-      </p>
+    <section id='achievements' className={`${className}`}>
+      <div className='layout'>
+        <h1 className='text-center font-bold'>
+          Make history with <span className='text-primary-500'>victory</span>
+        </h1>
+        <p className='mt-5 text-center'>
+          Over the years, our members have conquered many IT competitions across the nation. They’ve become our pride
+          who will continue to astonish us!
+        </p>
+      </div>
       <div className='relative mt-5 flex h-[350px] w-full justify-center overflow-hidden'>
         {COMPETITIONS.map((competition, index) => (
           <div
             key={index}
             className={`absolute flex h-[300px] w-[300px] rounded-[20px] bg-white transition duration-500 ease-in-out ${
-              index == active
-                ? 'z-10'
-                : index == (active + 1) % 3
-                ? 'translate-x-[200px] translate-y-[50px]'
-                : 'translate-x-[-200px] translate-y-[50px]'
+              (index == active && 'z-10 bg-gray-200') ||
+              (index == (active + 1) % 3 && 'translate-x-[200px] translate-y-[50px]') ||
+              'translate-x-[-200px] translate-y-[50px]'
             }`}
             onClick={() => handleNextSlide()}
           >
@@ -77,6 +81,6 @@ export const HistorySection = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

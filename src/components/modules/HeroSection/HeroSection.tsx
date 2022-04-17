@@ -1,19 +1,18 @@
 import { Button } from '@/elements/Button/Button'
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const HeroSection = () => {
+type Props = {
+  className?: string
+}
+
+export const HeroSection = ({ className }: Props) => {
   return (
-    <div id='about' className='flex flex-col md:flex-row'>
-      <div className='w-full md:w-5/12'>
-        <NextImage
-          className='relative h-[350px] w-full'
-          src='/assets/images/banner.png'
-          layout='fill'
-          objectFit='contain'
-        />
+    <section id='about' className={`flex flex-col sm:flex-row ${className}`}>
+      <div className='sm:w-1/3'>
+        <NextImage width='568px' height='697px' src='/assets/images/banner.png' layout='responsive' />
       </div>
-      <div className='mt-3 flex w-full md:ml-3 md:w-7/12'>
-        <div className='self-center'>
+      <div className='mt-8 flex sm:mt-0 sm:w-2/3 sm:pl-12'>
+        <div className='self-center text-center sm:text-left'>
           <h1 className='font-bold'>
             Hello <span className='text-primary-500'>Fellas!</span>
           </h1>
@@ -29,6 +28,6 @@ export const HeroSection = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

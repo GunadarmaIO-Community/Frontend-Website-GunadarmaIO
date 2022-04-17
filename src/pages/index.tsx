@@ -3,11 +3,11 @@ import * as React from 'react'
 import { Layout } from 'src/layouts/Main/Layout'
 
 import { Seo } from '@/elements/Seo/Seo'
+import { AchievementSection } from '@/modules/AchievementSection/AchievementSection'
 import { ArticleSection } from '@/modules/ArticleSection/ArticleSection'
 import { EventSection } from '@/modules/EventSection/EventSection'
 import { Footer } from '@/modules/Footer/Footer'
 import { HeroSection } from '@/modules/HeroSection/HeroSection'
-import { HistorySection } from '@/modules/HistorySection/HistorySection'
 import { IntroSection } from '@/modules/IntroSection/IntroSection'
 import { Navbar } from '@/modules/Navbar/Navbar'
 import { NewsLetterSection } from '@/modules/NewsLetterSection/NewsLetterSection'
@@ -30,23 +30,23 @@ type Props = {
 export default function IndexPage({ divisions, events, articles }: Props) {
   return (
     <Layout>
-      <Seo templateTitle='Index' />
-      <Navbar />
+      <Seo />
+      <Navbar className='' />
       <main>
         <div className='layout py-20'>
-          <HeroSection />
+          <HeroSection className='sm:mt-20' />
         </div>
-        <StatsSection />
+        <StatsSection className='my-0 md:my-12' />
         <div className='layout min-h-screen py-20'>
-          <IntroSection />
-          <OurDivision className='mt-10 sm:mt-12' divisions={divisions} />
-          <EventSection events={events} />
-          <ArticleSection articles={articles} />
-          <HistorySection />
+          <IntroSection className='' />
+          <OurDivision className='mt-20 md:mt-32' divisions={divisions} />
+          <EventSection className='mt-20 md:mt-32' events={events} />
+          <ArticleSection className='mt-20 md:mt-32' articles={articles} />
         </div>
-        <NewsLetterSection />
+        <AchievementSection className='mb-20 md:mb-32 md:mt-12' />
+        <NewsLetterSection className='' />
       </main>
-      <Footer />
+      <Footer className='py-10' />
     </Layout>
   )
 }

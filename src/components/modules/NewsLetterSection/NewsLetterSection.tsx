@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useState } from 'react'
 
 import { Button } from '@/elements/Button/Button'
@@ -6,21 +6,24 @@ import { Input } from '@/elements/Input/Input'
 import { NextImage } from '@/elements/NextImage/NextImage'
 
 import { PostSubscriptionResponse } from '@/types/response'
-import { Subscription } from '@/types/type'
 
-export const NewsLetterSection = () => {
+type Props = {
+  className?: string
+}
+
+export const NewsLetterSection = ({ className }: Props) => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
-  const [status, setStatus] = useState({ status: '' })
+  const [status, setStatus] = useState({ status: '', message: '' })
 
-  const handleInputName = (e) => {
+  const handleInputName = (e: any) => {
     setName(e.target.value)
-    setStatus({ status: '' })
+    setStatus({ status: '', message: '' })
   }
 
-  const handleInputEmail = (e) => {
+  const handleInputEmail = (e: any) => {
     setEmail(e.target.value)
-    setStatus({ status: '' })
+    setStatus({ status: '', message: '' })
   }
 
   function isEmailValid() {
@@ -31,27 +34,31 @@ export const NewsLetterSection = () => {
     return false
   }
 
-  const handleSubscribe = async (): Promise<Subscription[]> => {
-    if (name && isEmailValid()) {
-      try {
-        const subscribe = await axios.post<PostSubscriptionResponse>(
-          'newsletter',
-          {
-            name: name,
-            email: email,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        setName('')
-        setEmail('')
-        setStatus(subscribe.data)
-      } catch (err) {
-        setStatus(err.response.data)
+  const sendSubscribe = async () => {
+    try {
+      const resSubscribe = await axios.post<PostSubscriptionResponse>(
+        'newsletter',
+        { name: name, email: email },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      setName('')
+      setEmail('')
+      return resSubscribe.data
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const error = err as AxiosError
+        if (error && error.response) {
+          return error.response.data
+        }
       }
+      return { status: 'error', message: 'error' }
+    }
+  }
+
+  const handleSubscribe = async () => {
+    if (name && isEmailValid()) {
+      const subscribe = await sendSubscribe()
+      setStatus(subscribe)
     } else {
       if (!name && !email) {
         setStatus({ status: 'error', message: 'Nama dan Email tidak boleh kosong' })
@@ -64,7 +71,7 @@ export const NewsLetterSection = () => {
   }
 
   return (
-    <div className='bg-primary-100'>
+    <section className={`bg-primary-100 ${className}`}>
       <div className='layout'>
         <div className='flex flex-col py-10 md:flex-row md:py-20'>
           <div className='w-full md:w-3/5 md:pr-5'>
@@ -100,6 +107,6 @@ export const NewsLetterSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

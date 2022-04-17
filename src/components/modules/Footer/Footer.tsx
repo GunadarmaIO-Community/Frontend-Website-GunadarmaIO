@@ -1,22 +1,21 @@
 import { NextImage } from '@/elements/NextImage/NextImage'
 
-export const Footer = () => {
+type Props = {
+  className?: string
+}
+
+export const Footer = ({ className }: Props) => {
   return (
     <footer id='contact'>
       <div className='bg-[url("/assets/images/adv-gunadarma.png")] bg-cover bg-center bg-no-repeat pt-44 md:bg-top'>
-        <div className='bg-neutral-50 pb-5'>
+        <div className={`bg-neutral-50 ${className}`}>
           <div className='layout'>
-            <div className='flex flex-col lg:flex-row'>
-              <div className='lg:w-1/3 lg:pr-5'>
-                <div className='w-full'>
-                  <NextImage
-                    className='relative h-[140px] w-[250px]'
-                    src='assets/images/logo-text.png'
-                    layout='fill'
-                    objectFit='contain'
-                  />
+            <div className='flex flex-col lg:flex-row lg:gap-5'>
+              <div className='text-center lg:w-1/3 lg:text-left'>
+                <div className='px-10 sm:px-40 lg:px-0'>
+                  <NextImage width='449px' height='65px' src='assets/images/logo-text.png' layout='responsive' />
                 </div>
-                <p>
+                <p className='mt-5'>
                   <img
                     src='assets/icons/developer-icon.svg'
                     className='inline w-[30px]'
@@ -26,8 +25,8 @@ export const Footer = () => {
                 </p>
                 <p className=''>Gunadarma IO 2021</p>
               </div>
-              <div className='lg:w-1/3 lg:pr-5'>
-                <p className='mt-5'>
+              <div className='text-center lg:w-1/3 lg:text-left'>
+                <p className='mt-5 lg:mt-0'>
                   <img
                     src='assets/icons/location-icon.svg'
                     className='inline w-[30px]'
@@ -46,8 +45,8 @@ export const Footer = () => {
                 </p>
                 <p>iogunadarma.community@gmail.com</p>
               </div>
-              <div className='lg:flex lg:w-1/3 lg:flex-col lg:justify-between lg:pl-5'>
-                <div className='mt-5 grid grid-cols-4 gap-2'>
+              <div className='w-full self-center sm:w-3/5 lg:flex lg:w-1/3 lg:flex-col lg:justify-between lg:self-auto'>
+                <div className='mt-5 grid grid-cols-4 gap-2 lg:mt-0'>
                   <NextImage
                     className='relative h-[50px] w-full'
                     src='assets/images/partner/logo-bem-fti-ug.png'
@@ -97,7 +96,7 @@ export const Footer = () => {
                     objectFit='contain'
                   />
                 </div>
-                <div className='mt-5 flex justify-end'>
+                <div className='mt-5 flex justify-center lg:mt-0 lg:justify-end'>
                   <div className='ml-5 w-[40px]'>
                     <NextImage
                       className='relative h-[40px] w-full'
